@@ -10,17 +10,24 @@ export default class Header extends Component {
                     <a href="/" className="navbar-brand">{branding}</a>
                     <div>
                         <ul className="navbar-nav mr-auto">
-                            <li className="navbar-item">
-                            <Link to="/" block color='success' className='btn btn-md btn-success my-1'>
+                            <li >
+                            <Link to="/" className="navbar-brand">
                                    Contacts
                                </Link>
                         
                             </li>
 
                             <li className="navbar-item">
-                            <Link to="/contactus" block color='success' className='btn btn-md btn-success my-1'>
+                            <Link to="/contactus" className="navbar-brand">
                                    Contact Us
                             </Link>
+                        
+                            </li>
+
+                            <li >
+                            <Link to="/addquiz" className="navbar-brand">
+                                   Add Quiz
+                               </Link>
                         
                             </li>
                         </ul>
