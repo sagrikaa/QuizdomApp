@@ -7,6 +7,7 @@ import AddContact from './components/contact/AddContact';
 import Header from './components/layouts/Header';
 import ContactUs from './components/ContactUs';
 import Provider from './context';
+import AddQuiz from './components/quiz/AddQuiz'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
@@ -16,7 +17,7 @@ class App extends React.Component {
   return (
     <BrowserRouter>
     <Provider>
-    <div className="App">
+    <div className=" cointainer App">
       
       
       
@@ -25,6 +26,8 @@ class App extends React.Component {
 
            
             <Route exact path="/" name="Contacts Page" component={Contacts} />
+            <Route path='/addcontact' name='Add Contact' component={AddContact}/>
+            <Route path='/addquiz' name='Add Quiz' component={AddQuiz}/>
             <Route path='/addcontact' name='Add Contact' component={AddContact}/>
             <Route path='/contacts' name='Contacts' component={Contacts}/>
             <Route path='/contactus' name='Contact Us' component ={ContactUs}/>
