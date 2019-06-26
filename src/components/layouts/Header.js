@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import {Link} from 'react-router-dom'
 export default class Header extends Component {
     render() {
         const { branding } = this.props;
@@ -11,16 +11,16 @@ export default class Header extends Component {
                     <div>
                         <ul className="navbar-nav mr-auto">
                             <li className="navbar-item">
-                               <a href="/" className="nav-link">
-                                   Home
-                               </a>
+                            <Link to="/" block color='success' className='btn btn-md btn-success my-1'>
+                                   Contacts
+                               </Link>
                         
                             </li>
 
                             <li className="navbar-item">
-                               <a href="/" className="nav-link">
-                                   Quiz
-                               </a>
+                            <Link to="/contactus" block color='success' className='btn btn-md btn-success my-1'>
+                                   Contact Us
+                            </Link>
                         
                             </li>
                         </ul>
