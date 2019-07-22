@@ -1,11 +1,9 @@
-import  React , {Component} from 'react';
-
+import  React , {Component} from 'react'
+import axios from 'axios'
 
 const Context = React.createContext();
 
 const reducer = (state ,action) =>{
-
-
     switch(action.type){
 
         case 'DELETE_CONTACT': return{
@@ -17,6 +15,13 @@ const reducer = (state ,action) =>{
         case 'ADD_CONTACT': return{
             ...state,
             contacts: [action.payload , ...state.contacts]
+        };
+
+
+        case 'DELETE_QUIZ': return{
+            ...state,
+            quizes:state.quizes.filter(quiz=>quiz._id!== action.payload)
+            
         };
         default:
             return state;
@@ -38,7 +43,19 @@ export default class Provider extends Component{
             {id:3,question:'Question 3',answer:'Answer 3'}
         ],
 
+        quizes:[],
+        categories:[],
         dispatch: action=>this.setState(state=>reducer(state,action))
+    }
+    
+    componentDidMount(){
+        axios.get('http://localhost:2001/api/quiz')
+        .then(res => 
+            { this.setState({quizes:res.data})   })
+
+         axios.get('http://localhost:2001/api/category')
+        .then(res => 
+            { this.setState({categories:res.data}) ;console.log(this.state.categories)  })
     }
     
 render(){
