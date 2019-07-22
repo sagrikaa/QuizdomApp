@@ -7,7 +7,8 @@ import AddContact from './components/contact/AddContact';
 import Header from './components/layouts/Header';
 import ContactUs from './components/ContactUs';
 import Provider from './context';
-import AddQuiz from './components/quiz/AddQuiz'
+import AddQuiz from './components/quiz/AddQuiz';
+import Faq from  './components/Faq';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
@@ -31,6 +32,7 @@ class App extends React.Component {
             <Route path='/addcontact' name='Add Contact' component={AddContact}/>
             <Route path='/contacts' name='Contacts' component={Contacts}/>
             <Route path='/contactus' name='Contact Us' component ={ContactUs}/>
+            <Route path='/faq' name='Frequently Asked Questions' component ={Faq}/>
 
             
         </Switch>
