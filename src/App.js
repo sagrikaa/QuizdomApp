@@ -13,7 +13,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddQuestion from './components/quiz/AddQuestion';
 import Dashboard from './components/Dashboard';
 import Quizes from './components/quiz/Quizes'
-
+import PlayQuiz from './components/quiz/PlayQuiz'
 
 class App extends React.Component {
   render(){
@@ -37,6 +37,7 @@ class App extends React.Component {
             <Route path='/contactus' name='Contact Us' component ={ContactUs}/>
             <Route path='/faq' name='Frequently Asked Questions' component ={Faq}/>
             <Route path='/addQuestion' name='Contact Us' component ={AddQuestion}/>
+            <Route path='/playquiz' name='Contact Us' component ={PlayQuiz}/>
             <Route path='/home' name='Contact Us' component ={Dashboard}/>
 
             

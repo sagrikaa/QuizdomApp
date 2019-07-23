@@ -10,13 +10,14 @@ export default class Faq extends Component {
 
     render() {
         const {showItemDetails}=this.state;
-        const {id,question,answer}=this.props.faq;
+        const {question,answer}=this.props.faq;
         return (
             <Consumer>
                 
             {
                value=>{
                 const {dispatch} = value;
+                const {faq}=value.faq;
                 return(
                     <div className="card card-body mb-3">
                         <h4>{question}

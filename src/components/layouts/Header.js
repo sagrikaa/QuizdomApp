@@ -5,14 +5,14 @@ export default class Header extends Component {
     render() {
         const { branding } = this.props;
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-3">
-                <div className="container">
+            <nav className="navbar navbar-expand-sm navbar-dark  gradientNav mb-3">
+                <div className="container" style={{color:'white'}}>
                     <a href="/" className="navbar-brand">{branding}</a>
                     <div>
                         <ul className="navbar-nav mr-auto">
                             <li >
-                            <Link to="/" className="navbar-brand">
-                                   Contacts
+                            <Link to="/quizzes" className="navbar-brand">
+                                   Quizzes
                                </Link>
                         
                             </li>

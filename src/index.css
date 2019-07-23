@@ -18,3 +18,32 @@ code {
   display: block;
 
 }
+
+.gradientButton {
+  /* background-image: linear-gradient(to right, rgb(255, 94, 0),red); */
+  background-image: linear-gradient(to right, #FF8489,#D5ADC8);
+  color:white;
+}
+
+.gradientNav {
+  /* background-image: linear-gradient(to right, rgb(255, 94, 0),red); */
+  background-image: linear-gradient(to right, #FC575E,#90D5EC);
+  /* background-image: linear-gradient(to right, #EE5253,#D3D3D3); */
+  color: white;
+  display: block;
+  width:auto;
+  
+}
+
+.quizCard {
+ 
+  background-image: url(asset/img/chaos3.png);
+  background-repeat: repeat-y;
+  color:white;
+ 
+}
+
+.mainPlayQuiz {
+  background-image: url(asset/img/chaos3.png);
+}
+/* #EE5253#D3D3D3 */

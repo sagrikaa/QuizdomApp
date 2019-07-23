@@ -49,11 +49,11 @@ export default class Provider extends Component{
     }
     
     componentDidMount(){
-        axios.get('http://localhost:2001/api/quiz')
+        axios.get('http://localhost:2000/api/quiz')
         .then(res => 
             { this.setState({quizes:res.data})   })
 
-         axios.get('http://localhost:2001/api/category')
+         axios.get('http://localhost:2000/api/category')
         .then(res => 
             { this.setState({categories:res.data}) ;console.log(this.state.categories)  })
     }

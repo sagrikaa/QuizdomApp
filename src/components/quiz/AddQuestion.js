@@ -7,8 +7,9 @@ class AddQuestion extends Component {
     state={
        
         question:"",
-        options:"",
+        option:"",
         correctAns:"",
+        options:"",
       
     }
 
@@ -18,12 +19,16 @@ class AddQuestion extends Component {
     }
 
     // this.setState({categories:res.data}
-    onChange = e => this.setState({[e.target.name] : e.target.value});
+    onChange = e => {
+       this.setState({errorMessage:""});
+        this.setState({[e.target.name] : e.target.value})};
         
     onSubmit = (dispatch , e) => {
         e.preventDefault();
-        const {question,options,correctAns} = this.state;  
-        const quiz = {
+        let {question,options,correctAns} = this.state;  
+        options=options.toLowerCase();
+        correctAns=correctAns.toLowerCase();
+        const questionset = {
             
             question,
             options,
@@ -31,17 +36,35 @@ class AddQuestion extends Component {
             
         };
 
-        console.log(quiz);
-        axios.post('http://localhost:2000/api/quiz',quiz)
+        console.log(questionset);
+        console.log(sessionStorage.getItem('quizId'))
+        axios.patch(`http://localhost:2000/api/quiz/${sessionStorage.getItem('quizId')}/question`,questionset)
         .then(res => console.log(res)
         )
         // dispatch({type:"ADD_CONTACT", payload:newContact});
 
         this.setState({name:'',category:'',description:'',difficult:''});
     }
+    addOption=()=>{
+        
+        console.log(this.state.options)
+        if(this.state.option!==""){
+        this.setState({options:this.state.option+","+this.state.options})
+        var node = document.createElement("li");      
+        var textnode = document.createTextNode(this.state.option);        
+        node.appendChild(textnode);                             
+        document.getElementById("myOptions").appendChild(node); 
+        this.setState({options:this.state.options+','+this.state.option})
+        console.log(this.state.options);
+        this.setState({option:''})
+        }
+        else{
+            this.setState({errorMessage:"Please enter an option"})
+        }
     
+    }
     render() {
-        const {question,options,correctAns} = this.state;
+        const {question,option,correctAns} = this.state;
         return (
             <Consumer>
                 {
@@ -49,21 +72,36 @@ class AddQuestion extends Component {
                         const {dispatch} = value;
 
                         return(
-                            <div className='card mb-3'>
-                            <h3 className="card-header">Add Question</h3>
+                            <div className='card mb-3 col-md-6 offset-md-3'>
+                            <h3 className="card-header gradientNav" >Add Question</h3>
                             <div className="card-body">
                                 <form onSubmit={this.onSubmit.bind(this,dispatch)}>
                                     <div className="form-group">
                                         <label htmlFor="name">Question</label>
-                                        <input type="text" className="form-control form-control-md" name="name" placeholder="Question" value={question}
+                                        <input type="text" className="form-control form-control-md" name="question" placeholder="Question" value={question}
                                         onChange={this.onChange}/>
                                     </div>
             
                                     <div className="form-group">
-                                        <label htmlFor="name">Options(* Seperate by comma)</label>
-                                        <input type="text" className="form-control form-control-md" name="options" placeholder="Category" value={options} onChange={this.onChange}/>
+                                        <label htmlFor="name">Options</label>
+                                        
+                                        <input type="text" className="form-control form-control-md mb-3" style={{width:'90%',float:'left'}} name="option" placeholder="Option.." value={option} onChange={this.onChange}/>
+                                         <i style={{cursor:'pointer',float:'right',color:'black'}} className="fas fa-plus col-md-1" onClick={this.addOption}></i>
+                                       
+                                       
+                                       
                                     </div>
-            
+
+
+                                    <div className="form-group">
+                                        <label htmlFor="optionList"><ul  id='myOptions'></ul></label>
+                                       { this.state.errorMessage? <label htmlFor="errorMessage" style={{display:'block',flex:'auto',color:'red'}}>{this.state.errorMessage}</label>:null}
+                                                                              
+                                    </div>
+                                    
+                                    
+                                  
+                                    
                                     <div className="form-group">
                                         <label htmlFor="name">Correct Answer</label>
                                         <input onChange={this.onChange} className="form-control form-control-md"  name='correctAns' type="text" vaue={correctAns}>
@@ -74,7 +112,7 @@ class AddQuestion extends Component {
                                    
 
                                     
-                                    <input type="submit" className="btn btn-block btn-danger" value="Add" />
+                                    <input type="submit" className="btn btn-block gradientButton" value="Add" />
                                 </form>
                             </div>
                             

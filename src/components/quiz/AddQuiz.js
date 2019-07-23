@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Consumer} from '../../context';
 import axios from 'axios';
-
+import {Redirect,Link} from 'react-router-dom'
 class AddQuiz extends Component {
 
     state={
@@ -10,18 +10,26 @@ class AddQuiz extends Component {
         category:"",
         difficult:"",
         descripion:"",
-        categories:[]
+        categories:[],
+        nextquestion:false,
+        redirect:false
     }
 
     componentDidMount(){
         
-        axios.get('http://localhost:2001/api/category')
+        axios.get('http://localhost:2000/api/category')
         .then(res=>this.setState({categories:res.data}));
     }
 
     // this.setState({categories:res.data}
     onChange = e => this.setState({[e.target.name] : e.target.value});
         
+    nextQuestion=()=>{
+        
+            this.setState({nextquestion:true});
+            console.log(this.state.nextquestion)
+          
+    }
     onSubmit = (dispatch , e) => {
         e.preventDefault();
         const {name,category,description,difficult} = this.state;  
@@ -34,16 +42,23 @@ class AddQuiz extends Component {
         };
 
         console.log(quiz);
-        axios.post('http://localhost:2001/api/quiz',quiz)
+        axios.post('http://localhost:2000/api/quiz',quiz)
         .then(res => 
             {
-                console.log(res)
-                 this.setState({redirect:true})
+                console.log(res);
+                 this.setState({redirect:true,nextQuestion:true});
+                 sessionStorage.setItem('quizId',res.data._id);
+
             }
+
+           
         )
+        document.getElementById("addQuiz").disabled = true;
+    
+        
         // dispatch({type:"ADD_CONTACT", payload:newContact});
 
-        this.setState({name:'',category:'',description:'',difficult:''});
+        // this.setState({name:'',category:'',description:'',difficult:''});
     }
     
     render() {
@@ -56,7 +71,7 @@ class AddQuiz extends Component {
 
                         return(
                             <div className='card mb-3 col-md-6 offset-md-3'>
-                            <h3 className="card-header">Add Quiz<i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i></h3>
+                            <h3 className="card-header gradientNav">Add Quiz<i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i></h3>
                             <div className="card-body">
                                 <form onSubmit={this.onSubmit.bind(this,dispatch)}>
                                     <div className="form-group">
@@ -91,10 +106,19 @@ class AddQuiz extends Component {
                                     </div>
 
                                     
-                                    <input type="submit" className="btn btn-block btn-danger" value="Add Quiz" />
+                                     <input type="submit" id='addQuiz' className="btn btn-block gradientButton" value="Save Quiz" />
+                                    
+                                    {/* <button id='addQuestion' className="btn btn-block gradientButton" value="Add Question" style={{color:'white'}}> */}
+                                       { this.state.nextQuestion?<Link to={'/addquestion'}  className='btn btn-block gradientButton'
+                                        style={{color:'white'}} id='addQuestion'>
+                                             Add Question
+                                        <i style={{cursor:'pointer',color:'white'}} className="fas fa-arrow-right ml-3 "></i></Link>:null}
+                                        {/* </button> */}
                                 </form>
+                                 
+                                {this.state.nextquestion && <Redirect to={"/addquestion"}/>}
                             </div>
-                            
+                           
                         </div>
                         
                             );
