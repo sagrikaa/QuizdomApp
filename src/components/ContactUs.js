@@ -1,42 +1,66 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export default class ContactUs extends Component {
-    render() {
-        return (
-            <div>
 
- <div className="container contact-form">
-            <div className="contact-image">
+handleSubmit(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    axios({
+        method: "POST", 
+        url:"http://localhost:2000/api/contactus/send", 
+        data: {
+            name: name,   
+            email: email,  
+            message: message
+        }
+    }).then((response)=>{
+        if (response.data.msg === 'success'){
+            alert("Message Sent."); 
+            this.resetForm()
+        }else if(response.data.msg === 'fail'){
+            alert("Message failed to send.")
+        }
+    })
+}
+
+resetForm(){
+    document.getElementById('contact-form').reset();
+}
+
+render(){
+    return(
+       
+            
+        <div className="col-sm-4 offset-sm-4">
+            <h3 className="text-center">Drop us a message!</h3>
+            <div className="col-sm-3 offset-sm-3">
+                
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>
-            <form method="post">
-                <h3>Drop Us a Message</h3>
-               <div className="row">
-                    <div className="col-md-6">
-                        <div className="form-group">
-                            <input type="text" name="txtName" className="form-control" placeholder="Your Name *" value="" />
-                        </div>
-                        <div className="form-group">
-                            <input type="text" name="txtEmail" className="form-control" placeholder="Your Email *" value="" />
-                        </div>
-                        <div className="form-group">
-                            <input type="text" name="txtPhone" className="form-control" placeholder="Your Phone Number *" value="" />
-                        </div>
-                        <div className="form-group">
-                            <input type="submit" name="btnSubmit" className="btnContact" value="Send Message" />
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-group">
-                            <textarea name="txtMsg" className="form-control" placeholder="Your Message *" ></textarea>
-                        </div>
-                    </div>
+            <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+                
+                <div className="form-group">
+                    <label>Name</label>
+                    <input type="text" className="form-control" id="name" required />
+                    
                 </div>
+                
+                <div className="form-group">
+                    <label >Email address</label>
+                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" required/>
+                </div>
+                <div className="form-group">
+                    <label >Message</label>
+                    <textarea className="form-control" rows="5" id="message" required></textarea>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-</div>
-                 
-This is contact page          
-  </div>
-        )
-    }
+        </div>
+    )
 }
+
+}
+
