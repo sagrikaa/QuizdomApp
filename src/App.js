@@ -20,7 +20,7 @@ class App extends React.Component {
   return (
     <BrowserRouter>
     <Provider>
-    <div className=" cointainer App">
+    <div className=" cointainer mainPlayQuiz">
       
       
       

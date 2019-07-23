@@ -10,34 +10,41 @@ export default class Faq extends Component {
 
     render() {
         const {showItemDetails}=this.state;
-        const {question,answer}=this.props.faq;
+        // const {id,question,answer}=this.props.faq;
         return (
             <Consumer>
                 
             {
                value=>{
                 const {dispatch} = value;
-                const {faq}=value.faq;
+                const {faqs} = value;
                 return(
-                    <div className="card card-body mb-3">
-                        <h4>{question}
-                        <i className="fas fa-caret-down" style={{cursor:'pointer'}} 
-                        onClick={ ()=>
-                            this.setState(
-                                {
-                                    showItemDetails:!this.state.showItemDetails
-                                }
-                            )
-                        }></i>
-                        
-                        </h4>
-                        {showItemDetails ? (<ul className="list-group">
-                            <li className="list-group-item">Answer:{answer}</li>
-                            
-                        </ul>):null}
-                    
-                        
-                    </div>
+                    <React.Fragment>
+
+                    {faqs.map(faq =>
+                     <div className="card card-body mb-3">
+                     <h4>{faq.question}
+                     <i className="fas fa-caret-down" style={{cursor:'pointer'}} 
+                     onClick={ ()=>
+                         this.setState(
+                             {
+                                 showItemDetails:!this.state.showItemDetails
+                             }
+                         )
+                     }></i>
+                     
+                     </h4>
+                     {showItemDetails ? (<ul className="list-group">
+                         <li className="list-group-item">Answer: {faq.answer}</li>
+                         
+                     </ul>):null}
+                 
+                     
+                 </div> 
+                    )}
+   
+                    </React.Fragment>
+                   
                 )
             }
             }

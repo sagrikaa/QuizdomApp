@@ -37,11 +37,7 @@ export default class Provider extends Component{
             {id:3,name:'bernardo sze',email:'b.sze@gmail.com',phone:'888-888-8888'}
         ],
 
-        faqs:[
-            {id:1,question:'Question 1',answer:'Answer 1'},
-            {id:2,question:'Question 2',answer:'Answer 2'},
-            {id:3,question:'Question 3',answer:'Answer 3'}
-        ],
+        faqs:[],
 
         quizes:[],
         categories:[],
@@ -56,6 +52,10 @@ export default class Provider extends Component{
          axios.get('http://localhost:2000/api/category')
         .then(res => 
             { this.setState({categories:res.data}) ;console.log(this.state.categories)  })
+
+        axios.get('http://localhost:2000/api/faq')
+            .then(res => 
+                { this.setState({faqs:res.data}) ;console.log(this.state.faqs)  })
     }
     
 render(){
