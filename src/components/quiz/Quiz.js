@@ -37,7 +37,7 @@ export default class Quiz extends Component {
                         <h5 className="card-text">*{difficult} </h5>
                        
                         <p className="card-text"><h6>{description}</h6></p>
-                        <Link to={"/playquiz"} className="btn gradientButton">Play</Link>
+                        <Link to={{pathname:"/playquiz",state:{quiz:this.props.quiz}}} className="btn gradientButton">Play</Link>
                       </div>
                     </div>
                   </div>
