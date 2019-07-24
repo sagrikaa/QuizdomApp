@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
+import fire from '../../config/Fire'
 export default class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+
+    logout() {
+        fire.auth().signOut();
+    }
     render() {
         const { branding } = this.props;
         return (
@@ -34,6 +44,10 @@ export default class Header extends Component {
                             <Link to="/faq" className="navbar-brand">
                                    FAQ's
                                </Link>
+                        
+                            </li>
+                            <li >
+                             <button className="btn btn-secondary" onClick={this.logout}>Log Out</button>
                         
                             </li>
                         </ul>
