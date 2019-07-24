@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import fire from '../config/Fire';
 
 
@@ -31,9 +30,16 @@ class Login extends Component {
   signup(e){
     e.preventDefault();
     fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-    }).then((u)=>{console.log(u)})
+    }).then((u)=>{console.log(u)
+      alert("Sign Up Successful!")
+
+    }
+
+    )
     .catch((error) => {
         console.log(error);
+        alert("Sign Up Failed. Please Provide Email and Passwords")
+
       })
   }
   render() {

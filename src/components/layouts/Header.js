@@ -47,7 +47,7 @@ export default class Header extends Component {
                         
                             </li>
                             <li >
-                             <button className="btn" onClick={this.logout}>Log Out</button>
+                             <button className="btn btn-secondary" onClick={this.logout}>Log Out</button>
                         
                             </li>
                         </ul>
