@@ -41,7 +41,7 @@ export default class Home extends Component {
             <Route path='/contactus' name='Contact Us' component ={ContactUs}/>
             <Route path='/faq' name='Frequently Asked Questions' component ={Faq}/>
             <Route path='/addQuestion' name='Contact Us' component ={AddQuestion}/>
-            <Route path='/playquiz' name='Contact Us' component ={PlayQuiz}/>
+            <Route path='/playquiz' name='PlayQuiz' component ={PlayQuiz}/>
             <Route path='/home' name='Contact Us' component ={Dashboard}/>
 
             

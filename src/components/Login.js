@@ -47,7 +47,7 @@ class Login extends Component {
       <div>
       <br></br>
       <br></br>
-      <div className=" card col-sm-4 offset-sm-4">
+      <div className=" card col-sm-4 offset-sm-4 ">
        
        <form>
       <div class="form-group">

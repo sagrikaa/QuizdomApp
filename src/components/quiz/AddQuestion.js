@@ -43,11 +43,7 @@ class AddQuestion extends Component {
         )
         // dispatch({type:"ADD_CONTACT", payload:newContact});
 
-        this.setState({ 
-        question:"",
-        option:"",
-        correctAns:'',
-        options:"",});
+        this.setState({name:'',category:'',description:'',difficult:''});
     }
     addOption=()=>{
         
@@ -87,10 +83,13 @@ class AddQuestion extends Component {
                                     </div>
             
                                     <div className="form-group">
-                                        <label htmlFor="name" style={{display:'block'}}>Options</label>
+                                        <label htmlFor="name">Options</label>
                                         
-                                        <input type="text" className="form-control form-control-md " style={{width:'90%',float:'left'}} name="option" placeholder="Option.." value={option} onChange={this.onChange}/>
-                                        <i style={{cursor:'pointer',float:'right',color:'black'}} className="fas fa-plus col-md-1" onClick={this.addOption}></i>                         
+                                        <input type="text" className="form-control form-control-md mb-3" style={{width:'90%',float:'left'}} name="option" placeholder="Option.." value={option} onChange={this.onChange}/>
+                                         <i style={{cursor:'pointer',float:'right',color:'black'}} className="fas fa-plus col-md-1" onClick={this.addOption}></i>
+                                       
+                                       
+                                       
                                     </div>
 
 
@@ -105,7 +104,7 @@ class AddQuestion extends Component {
                                     
                                     <div className="form-group">
                                         <label htmlFor="name">Correct Answer</label>
-                                        <input onChange={this.onChange} className="form-control form-control-md"  name='correctAns' type="text" value={correctAns}>
+                                        <input onChange={this.onChange} className="form-control form-control-md"  name='correctAns' type="text" vaue={correctAns}>
                                            
                                         </input>
                                     </div>
