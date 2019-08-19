@@ -42,7 +42,7 @@ class AddQuiz extends Component {
         };
 
         console.log(quiz);
-        axios.post('http://localhost:2000/api/quiz',quiz)
+        axios.post('https://quizdom-backend.herokuapp.com/api/quiz',quiz)
         .then(res => 
             {
                 console.log(res);

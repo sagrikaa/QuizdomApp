@@ -10,7 +10,7 @@ handleSubmit(e){
     const message = document.getElementById('message').value;
     axios({
         method: "POST", 
-        url:"http://localhost:2000/api/contactus/send", 
+        url:"https://quizdom-backend.herokuapp.com/api/contactus/send", 
         data: {
             name: name,   
             email: email,  

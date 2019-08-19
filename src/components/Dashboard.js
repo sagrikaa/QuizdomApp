@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Carousel,Container,Col,Row,Card,Button,Nav} from 'react-bootstrap'
+import {Container,Col,Row,Card,Button,Nav} from 'react-bootstrap'
 
 export default class Dashboard extends Component {
     render() {
