@@ -17,7 +17,7 @@ class AddQuiz extends Component {
 
     componentDidMount(){
         
-        axios.get('http://localhost:2000/api/category')
+        axios.get('https://quizdom-backend.herokuapp.com/api/category')
         .then(res=>this.setState({categories:res.data}));
     }
 

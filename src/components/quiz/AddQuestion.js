@@ -14,7 +14,7 @@ class AddQuestion extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:2000/api/category')
+        axios.get('https://quizdom-backend.herokuapp.com/api/category')
         .then(res=>console.log(res));
     }
 
@@ -38,7 +38,7 @@ class AddQuestion extends Component {
 
         console.log(questionset);
         console.log(sessionStorage.getItem('quizId'))
-        axios.patch(`http://localhost:2000/api/quiz/${sessionStorage.getItem('quizId')}/question`,questionset)
+        axios.patch(`https://quizdom-backend.herokuapp.com/api/quiz/${sessionStorage.getItem('quizId')}/question`,questionset)
         .then(res => console.log(res)
         )
         // dispatch({type:"ADD_CONTACT", payload:newContact});

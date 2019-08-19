@@ -11,7 +11,7 @@ export default class Quiz extends Component {
 
     deleteQuiz = (id, dispatch)=>{
        dispatch({type:"DELETE_QUIZ",payload:id});
-       axios.delete('http://localhost:2000/api/quiz',{data:{id}})
+       axios.delete('https://quizdom-backend.herokuapp.com/api/quiz',{data:{id}})
        .then(res => 
            { console.log(res) })
     }
