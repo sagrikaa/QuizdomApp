@@ -1,7 +1,6 @@
 {
   "name": "quizdom",
   "version": "0.1.0",
-  "proxy": "http://localhost:2000",
   "private": true,
 
   "dependencies": {
