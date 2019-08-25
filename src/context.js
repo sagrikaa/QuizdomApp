@@ -45,15 +45,15 @@ export default class Provider extends Component{
     }
     
     componentDidMount(){
-        axios.get('http://localhost:2000/api/quiz')
+        axios.get('https://quizdom-backend.herokuapp.com/api/quiz')
         .then(res => 
             { this.setState({quizes:res.data})   })
 
-         axios.get('http://localhost:2000/api/category')
+         axios.get('https://quizdom-backend.herokuapp.com/api/category')
         .then(res => 
             { this.setState({categories:res.data}) ;console.log(this.state.categories)  })
 
-        axios.get('http://localhost:2000/api/faq')
+        axios.get('https://quizdom-backend.herokuapp.com/api/faq')
             .then(res => 
                 { this.setState({faqs:res.data}) ;console.log(this.state.faqs)  })
     }

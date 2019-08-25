@@ -6,36 +6,47 @@ export default class Header extends Component {
     constructor(props) {
         super(props);
         this.logout = this.logout.bind(this);
+        
     }
 
+    state={
+        toggle:false
+    }
 
     logout() {
         fire.auth().signOut();
     }
+
+toggleMenu=()=>{
+    
+    this.setState({toggle:!this.state.toggle})
+    console.log(this.state.toggle);
+  }
+
     render() {
         const { branding } = this.props;
         return (
             <nav className="navbar navbar-expand-sm navbar-dark  gradientNav mb-3">
                 <div className="container" style={{color:'white'}}>
                     <a href="/" className="navbar-brand">{branding}</a>
-                    <div>
-                        <ul className="navbar-nav mr-auto">
+                   
+                   <div  className={this.state.toggle?'topnav responsive':'topnav'} id="myTopnav">
+                        <ul className="mr-auto">
                             <li >
-                            <Link to="/quizzes" className="navbar-brand">
+                               <Link to="/quizzes" className="navbar-brand" >
                                    Quizzes
                                </Link>
-                        
+                              
                             </li>
 
-                            <li className="navbar-item">
+                            <li>
                             <Link to="/contactus" className="navbar-brand">
                                    Contact Us
                             </Link>
-                        
                             </li>
 
                             <li >
-                            <Link to="/addquiz" className="navbar-brand">
+                            <Link to="/addquiz" className="navbar-brand ">
                                    Add Quiz
                                </Link>
                         
@@ -47,13 +58,21 @@ export default class Header extends Component {
                         
                             </li>
                             <li >
-                             <button className="btn btn-secondary" onClick={this.logout}>Log Out</button>
-                        
+                             <button className="btn navbar-brand" onClick={this.logout}>Log Out</button>
                             </li>
+
+                            <li className='icon' >
+                            <button  className='btn' onClick={this.toggleMenu}>
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            </li>
+                            
                         </ul>
                     </div>
-                </div>
+                    </div>
+               
             </nav>
+         
         )
     }
 }
