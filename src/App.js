@@ -33,7 +33,7 @@ class App extends React.Component {
 
   render() {
     return (
-     <div>{this.state.user ? ( <Home/> ) : ( <Login /> )}</div>
+      <div className='mainPlayQuiz'>{this.state.user ? ( <Home/> ) : ( <Login /> )}</div>
     );
      
 }

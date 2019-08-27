@@ -44,11 +44,9 @@ class Login extends Component {
   }
   render() {
     return (
-      <div>
-      <br></br>
-      <br></br>
-      <div className=" card col-sm-4 offset-sm-4 ">
-       
+     
+      <React.Fragment >
+       <div className=" card col-sm-4 offset-sm-4 mt-5 mb-5">
        <form>
       <div class="form-group">
        <label for="exampleInputEmail1">Email address</label>
@@ -65,9 +63,9 @@ class Login extends Component {
       <br></br>
       <br></br>
  </form>
- 
  </div>
- </div>
+ </React.Fragment>
+
     );
   }
 }

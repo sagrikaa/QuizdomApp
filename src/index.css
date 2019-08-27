@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(asset/img/images.jpg);
+  min-height: 100%;
 }
 
 code {
@@ -37,17 +41,22 @@ code {
 
 .quizCard {
  
-  background-image: url(asset/img/chaos3.png);
-  background-repeat: repeat-y;
+  background-image: url(asset/img/tri.jpg);
+  background-repeat: repeat-x;
   color:white;
- 
-}
 
+/* 
+  background-image: linear-gradient(to right, #FC575E,#90D5EC); */
+  background-color: black;
+  
+}
+/* 
 .mainPlayQuiz {
   background-image: url(asset/img/images.jpg);
-  height:100%
- 
-}
+  overflow:hidden;
+  min-height: 100%;
+
+} */
 .navbar-toggler-icon{
   background-image: url(asset/img/toggle.png);
 }

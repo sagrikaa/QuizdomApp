@@ -26,10 +26,16 @@ toggleMenu=()=>{
     render() {
         const { branding } = this.props;
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark  gradientNav mb-3">
+            <nav className="navbar navbar-expand-sm navbar-dark sticky-top gradientNav mb-3">
                 <div className="container" style={{color:'white'}}>
                     <a href="/" className="navbar-brand">{branding}</a>
-                   
+                 
+                  <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
+                        <button class="btn" type="submit">Search</button>
+                    </form>
+                  
+
                    <div  className={this.state.toggle?'topnav responsive':'topnav'} id="myTopnav">
                         <ul className="mr-auto">
                             <li >
@@ -49,8 +55,7 @@ toggleMenu=()=>{
                             <Link to="/addquiz" className="navbar-brand ">
                                    Add Quiz
                                </Link>
-                        
-                            </li>
+                           </li>
                             <li >
                             <Link to="/faq" className="navbar-brand">
                                    FAQ's
@@ -69,6 +74,7 @@ toggleMenu=()=>{
                             
                         </ul>
                     </div>
+                   
                     </div>
                
             </nav>

@@ -22,7 +22,7 @@ export default class Quizes extends Component {
             {value => {
              const {quizes} = value;
              return(
-                 <React.Fragment>
+                 <div className='row'>
                     
                 
                 {/* <div class="col-sm-6"> */}
@@ -45,11 +45,12 @@ export default class Quizes extends Component {
     </div>
   </div> */}
                 
-                
+                <div className='col-sm-8'>
+                 
                  {quizes.map(quiz =>< Quiz key={quiz._id} quiz={quiz} /> 
                  )}
-              
-                 </React.Fragment>
+              </div>
+              </div>
                  ) 
                }  }      
 

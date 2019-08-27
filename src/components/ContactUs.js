@@ -34,8 +34,8 @@ render(){
     return(
        
             
-        <div className=" card col-sm-4 offset-sm-4">
-            <h3 className="text-center">Drop us a message!</h3>
+        <div className=" card col-sm-4 offset-sm-4 p-4">
+            <h3 className="text-center ">Drop us a message!</h3>
             <div className="col-sm-3 offset-sm-3">
                 
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>

@@ -21,17 +21,14 @@ export default class Home extends Component {
     
     render() {
         return (
-            <div>
-                <BrowserRouter>
+          
+    <BrowserRouter>
     <Provider>
-    <div className=" cointainer mainPlayQuiz">
-      
-      
+    <div >
       
        <Header branding = "Quizdom"/>
          <Switch>
 
-           
             <Route exact path="/" name="Quizzes" component={Quizes} />
             <Route path='/addcontact' name='Add Contact' component={AddContact}/>
             <Route path='/addquiz' name='Add Quiz' component={AddQuiz}/>
@@ -47,18 +44,10 @@ export default class Home extends Component {
             
         </Switch>
     
-      
-      {/* <AddContact/>
-        <Contacts/>
-       */}
-    
-    
-        
     </div>
     </Provider>
     </BrowserRouter>
 
-            </div>
         )
     }
 }
