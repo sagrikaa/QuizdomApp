@@ -40,14 +40,14 @@ code {
 }
 
 .quizCard {
- 
-  background-image: url(asset/img/tri.jpg);
+/*  
+  background-image: url(asset/img/tri.jpg); */
+  text-decoration: none;
   background-repeat: repeat-x;
-  color:white;
+  color:darkblue;
+  background-color: #FDEEF4;
+  
 
-/* 
-  background-image: linear-gradient(to right, #FC575E,#90D5EC); */
-  background-color: black;
   
 }
 /* 

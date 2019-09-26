@@ -44,23 +44,27 @@ export default class Quiz extends Component {
                 //       </div>
                 //     </div>
                 //   </div>
+                
                   <Link to={{pathname:"/playquiz",state:{quiz:this.props.quiz}}} className='quizCard'>
-                    <div className="card m-4 quizCard" >
+                    <div className="card m-4" style={{backgroundColor:'#FDEEF4'}} >
                         
-                        <span className='card-header' >
-                            <h4>{name}
-                            <i className="fas fa-trash-alt" style={{cursor:'pointer',float:'right',color:'#90D5EC'}}  onClick={this.deleteQuiz.bind(this,_id,dispatch)}></i>
-                            </h4>
+                        <span className='quizCardHeader'>
+                            <span className='quizCardName'>
+                                <h3  style={{backgroundColor:'#3B3131',color:'white'}}>
+                                    <center>{name.toUpperCase()}</center>
+                            {/* <i className="fas fa-trash-alt" style={{cursor:'pointer',float:'right',color:'#90D5EC'}}  onClick={this.deleteQuiz.bind(this,_id,dispatch)}></i> */}
+                            </h3>
+                            </span>
                         
-                        
-                        <h7><span className='mr-2' style={{float:'right'}} >{difficult}</span>
-                        <span className='m-2' style={{display:'block'}}>Category: {cat.map(c=>c.name)}</span></h7>
+                        <span className='mr-2' style={{float:'right'}}>{difficult}</span>
+                        <span className='m-2' style={{display:'block'}}>{category?<span>Category:{cat.map(c=>c.name)}</span>:null}</span>
+                       
                         </span>
-                        <span >
-                            <span className='m-3' stle={{display:'block'}}> {description}</span>
+                        
+                            <span className='m-3' stle={{display:'block'}}> <center style={{color:'grey'}}>{description}</center></span>
                            
                             
-                        </span>
+                  
                     
                         
                     </div>

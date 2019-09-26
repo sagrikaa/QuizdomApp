@@ -45,7 +45,7 @@ export default class Quizes extends Component {
     </div>
   </div> */}
                 
-                <div className='col-sm-8'>
+                <div className='col-sm-8 offset-sm-2'>
                  
                  {quizes.map(quiz =>< Quiz key={quiz._id} quiz={quiz} /> 
                  )}
