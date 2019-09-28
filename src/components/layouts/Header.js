@@ -46,15 +46,16 @@ toggleMenu=()=>{
                             </li>
 
                             <li>
-                            <Link to="/contactus" className="navbar-brand">
-                                   Contact Us
-                            </Link>
+                            
+                            <Link to="/addquiz" className="navbar-brand ">
+                                   Create
+                               </Link>
                             </li>
 
                             <li >
-                            <Link to="/addquiz" className="navbar-brand ">
-                                   Add Quiz
-                               </Link>
+                            <Link to="/contactus" className="navbar-brand">
+                                   Contact Us
+                            </Link>
                            </li>
                             <li >
                             <Link to="/faq" className="navbar-brand">

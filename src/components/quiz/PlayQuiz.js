@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Question from './Question'
 export default class PlayQuiz extends Component {
   state={
  
@@ -15,12 +15,17 @@ export default class PlayQuiz extends Component {
         const {questionset} = quiz;
         return (
 
-            <div className=' card  col-md-8 offset-md-2'>
-                <div className='jumbotron quizCard text-center'>
-                  <h5 className="card-header">{quiz.name}</h5>
-                 <p className="card-text">{quiz.description}</p>
+            <div className=' card col-md-8 offset-md-2'>
+
+              {/* Header Starts*/}
+                <div className='m-3 quizHeader text-center'>
+                  <h3 className='m-3'>{quiz.name.toUpperCase()}</h3>
+                 <p>{quiz.description}</p>
   
              </div>
+             {/* Header Ends */}
+
+
             <div className='card-body'> 
                <ul className="list-group list-group-flush">  
                <form onSubmit={(e)=>{e.preventDefault();this.setState({showAns:true})}}>
@@ -30,11 +35,15 @@ export default class PlayQuiz extends Component {
                     
 
                      <div className="form-group">
-                         <label htmlFor="name">{index+1}. { quest.question}</label>
+                       <Question question={quest} id={index+1}/>
+                         {/* <label htmlFor="name">
+                           <span>{index+1}.</span> { quest.question}
+                           </label>
                          {quest.options.map((option,i)=>
                          <div class="radio">
-                            <label><input type="radio"  name={quest._id}  onChange={this.onChange}/>{option}</label>
-                            </div>)}
+                           
+                            <label><input type="radio"  name={quest._id} value={option} onChange={this.onChange}/>{option}</label>
+                            </div>)} */}
                        {this.state.showAns? <div><label style={{color:'blue'}}>Answer: {quest.correctAns}</label></div>:null}
                      </div>
 
@@ -48,7 +57,7 @@ export default class PlayQuiz extends Component {
                        
 </form>  
                
-                {console.log(questionset)}
+                
             </ul>
             </div> 
             </div>

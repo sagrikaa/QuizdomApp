@@ -47,9 +47,31 @@ code {
   color:darkblue;
   background-color: #FDEEF4;
   
-
-  
 }
+
+.quizHeader {
+   
+    /* background-image: url(asset/img/tri.jpg); */
+    background-color: black;
+    background-image: linear-gradient(to right, #FC575E,#90D5EC);
+    text-decoration: none;
+    background-repeat: repeat;
+    color:white;
+
+    
+  
+    
+  }
+
+  .quizCardName{
+   background-color: black;
+   background-image: linear-gradient(to right, #FC575E,#90D5EC);
+   color:white;
+   text-transform: uppercase;
+   height: 50px;
+   font-style: normal;
+  }
+
 /* 
 .mainPlayQuiz {
   background-image: url(asset/img/images.jpg);

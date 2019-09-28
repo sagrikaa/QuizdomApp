@@ -71,7 +71,9 @@ class AddQuiz extends Component {
 
                         return(
                             <div className='card mb-3 col-md-6 offset-md-3'>
+
                             <h3 className="card-header gradientNav">Add Quiz<i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i></h3>
+                            
                             <div className="card-body">
                                 <form onSubmit={this.onSubmit.bind(this,dispatch)}>
                                     <div className="form-group">

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {Consumer} from '../../context'
 import axios from 'axios'
 import {Link} from 'react-router-dom' 
+import { transform } from '@babel/core'
 export default class Quiz extends Component {
     state=
     {
@@ -29,39 +30,26 @@ export default class Quiz extends Component {
                 
                 return(
                     
-                    
-                //     <div className="offset-md-1 mb-3 mt-3 ml-3 mr-3 col-md-6 " style={{width:"40%",float:"left"}} >
-                       
-
-                //     <div className="card text-center quizCard">
-                   
-                //       <div className="card-body">
-                //       <h3 className="card-title">{name}</h3>
-                //         <h5 className="card-text">*{difficult} </h5>
-                       
-                //         <p className="card-text"><h6>{description}</h6></p>
-                //         <Link to={{pathname:"/playquiz",state:{quiz:this.props.quiz}}} className="btn gradientButton">Play</Link>
-                //       </div>
-                //     </div>
-                //   </div>
                 
-                  <Link to={{pathname:"/playquiz",state:{quiz:this.props.quiz}}} className='quizCard'>
-                    <div className="card m-4" style={{backgroundColor:'#FDEEF4'}} >
+                  <Link to={{pathname:"/playquiz",state:{quiz:this.props.quiz}}}
+                  style={{textDecoration:'none'}}>
+                    <div className=" quizCard m-4">
                         
-                        <span className='quizCardHeader'>
-                            <span className='quizCardName'>
-                                <h3  style={{backgroundColor:'#3B3131',color:'white'}}>
-                                    <center>{name.toUpperCase()}</center>
+                        <span>
+                            <div className='quizCardName'>
+                                <h3 className='text-center'>
+                                    {name}
                             {/* <i className="fas fa-trash-alt" style={{cursor:'pointer',float:'right',color:'#90D5EC'}}  onClick={this.deleteQuiz.bind(this,_id,dispatch)}></i> */}
                             </h3>
-                            </span>
-                        
-                        <span className='mr-2' style={{float:'right'}}>{difficult}</span>
-                        <span className='m-2' style={{display:'block'}}>{category?<span>Category:{cat.map(c=>c.name)}</span>:null}</span>
+                            
+                            </div>
+                          
+                        <span className='mr-2' style={{float:'right',textTransform:'uppercase'}}>{difficult}</span>
+                        <span className='m-2'>{category?<span>Category: {cat.map(c=>c.name)}</span>:null}</span>
                        
                         </span>
                         
-                            <span className='m-3' stle={{display:'block'}}> <center style={{color:'grey'}}>{description}</center></span>
+                            <span className='m-3'> <center style={{color:'grey'}}>{description}</center></span>
                            
                             
                   
@@ -71,14 +59,7 @@ export default class Quiz extends Component {
                     
                     </Link>
 
-                    //Use this if needed
-                    // <div class="card m-4" style={{width: "18rem", height:'30%',float:'left'}}>
-                    // <img class="card-img-top " src={require('../../asset/img/images.jpg') } style={{height: "200px",float:'left'}}alt="Card cap"></img>
-                    // <div class="card-body">
-                    //     <p class="card-text">{description}</p>
-                    // </div>
-
-                    // </div>
+                 
                 )
             }
             }
