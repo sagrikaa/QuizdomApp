@@ -72,7 +72,10 @@ class AddQuiz extends Component {
                         return(
                             <div className='card mb-3 col-md-6 offset-md-3'>
 
-                            <h3 className="card-header gradientNav">Add Quiz<i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i></h3>
+                            <h3 className="card-header gradientNav">Add Quiz
+                            {/* <i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i>
+                             */}
+                            </h3>
                             
                             <div className="card-body">
                                 <form onSubmit={this.onSubmit.bind(this,dispatch)}>
@@ -103,7 +106,7 @@ class AddQuiz extends Component {
             
                                     <div className="form-group">
                                         <label htmlFor="name">Description</label>
-                                        <textarea type="text-area" className="form-control form-control-md" name="description" placeholder="description" value={description}
+                                        <textarea type="text-area" className="form-control form-control-md" name="description" placeholder="Description" value={description}
                                         onChange={this.onChange}/>
                                     </div>
 

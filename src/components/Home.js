@@ -8,7 +8,7 @@ import AddContact from './contact/AddContact';
 import Header from './layouts/Header';
 import ContactUs from '../components/ContactUs';
 import Provider from '../context';
-import AddQuiz from './quiz/AddQuiz';
+import AddQuizFormik from './quiz/AddQuizFormik';
 import Faq from  '../components/Faq';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddQuestion from './quiz/AddQuestion';
@@ -31,7 +31,7 @@ export default class Home extends Component {
 
             <Route exact path="/" name="Quizzes" component={Quizes} />
             <Route path='/addcontact' name='Add Contact' component={AddContact}/>
-            <Route path='/addquiz' name='Add Quiz' component={AddQuiz}/>
+            <Route path='/addquiz' name='Add Quiz' component={AddQuizFormik}/>
             <Route path='/quizzes' name='Add Quiz' component={Quizes}/>
             <Route path='/addcontact' name='Add Contact' component={AddContact}/>
             <Route path='/contacts' name='Contacts' component={Contacts}/>

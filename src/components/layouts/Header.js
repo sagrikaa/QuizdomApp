@@ -29,13 +29,14 @@ toggleMenu=()=>{
             <nav className="navbar navbar-expand-sm navbar-dark sticky-top gradientNav mb-3">
                 <div className="container" style={{color:'white'}}>
                     <a href="/" className="navbar-brand">{branding}</a>
-                 
+{/*                  
                   <form class="form-inline">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
                         <button class="btn" type="submit">Search</button>
-                    </form>
+                    </form> */}
                   
 
+                   {/* <div  className={this.state.toggle?'topnav responsive':'topnav'} id="myTopnav"> */}
                    <div  className={this.state.toggle?'topnav responsive':'topnav'} id="myTopnav">
                         <ul className="mr-auto">
                             <li >
