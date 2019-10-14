@@ -11,7 +11,7 @@ import Provider from '../context';
 import AddQuizFormik from './quiz/AddQuizFormik';
 import Faq from  '../components/Faq';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import AddQuestion from './quiz/AddQuestion';
+import AddQuestionFormik from './quiz/AddQuestionFormik';
 import Dashboard from './Dashboard';
 import Quizes from './quiz/Quizes'
 import PlayQuiz from './quiz/PlayQuiz'
@@ -30,14 +30,13 @@ export default class Home extends Component {
          <Switch>
 
             <Route exact path="/" name="Quizzes" component={Quizes} />
-            <Route path='/addcontact' name='Add Contact' component={AddContact}/>
+            {/* <Route path='/addcontact' name='Add Contact' component={AddContact}/> */}
             <Route path='/addquiz' name='Add Quiz' component={AddQuizFormik}/>
-            <Route path='/quizzes' name='Add Quiz' component={Quizes}/>
-            <Route path='/addcontact' name='Add Contact' component={AddContact}/>
-            <Route path='/contacts' name='Contacts' component={Contacts}/>
+            <Route path='/quizzes' name='Quizzez' component={Quizes}/>
+            {/* <Route path='/contacts' name='Contacts' component={Contacts}/> */}
             <Route path='/contactus' name='Contact Us' component ={ContactUs}/>
             <Route path='/faq' name='Frequently Asked Questions' component ={Faq}/>
-            <Route path='/addQuestion' name='Contact Us' component ={AddQuestion}/>
+            <Route path='/addQuestion' name='AddQuestion' component ={AddQuestionFormik}/>
             <Route path='/playquiz' name='PlayQuiz' component ={PlayQuiz}/>
             <Route path='/home' name='Contact Us' component ={Dashboard}/>
 

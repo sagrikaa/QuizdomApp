@@ -83,19 +83,25 @@ class AddQuestion extends Component {
                                     </div>
             
                                     <div className="form-group">
-                                        <label htmlFor="name">Options</label>
-                                        
-                                        <input type="text" className="form-control form-control-md mb-3" style={{width:'90%',float:'left'}} name="option" placeholder="Option.." value={option} onChange={this.onChange}/>
-                                         <i style={{cursor:'pointer',float:'right',color:'black'}} className="fas fa-plus col-md-1" onClick={this.addOption}></i>
-                                       
-                                       
-                                       
+                                    <label htmlFor="name">Options</label>
+                                      
+                                      <div className='row'>  
+                                      <div className='col-md-6'>
+                                      <input type="text" className="form-control form-control-md" name="option" placeholder="Option.." value={option} onChange={this.onChange}/>
+                                      <i style={{cursor:'pointer',color:'black'}} className="fas fa-plus-circle col-md-1 mt-3" onClick={this.addOption}></i>
+                                        { this.state.errorMessage? <label htmlFor="errorMessage" style={{float:'right',color:'red'}}>{this.state.errorMessage}</label>:null}
+                                      </div>
+                                     
+
+                                      <label htmlFor="optionList" className='col-md-6'><ul  id='myOptions'></ul></label>
+                                      </div>
+                                      
                                     </div>
 
 
                                     <div className="form-group">
-                                        <label htmlFor="optionList"><ul  id='myOptions'></ul></label>
-                                       { this.state.errorMessage? <label htmlFor="errorMessage" style={{display:'block',flex:'auto',color:'red'}}>{this.state.errorMessage}</label>:null}
+                                      
+                                     
                                                                               
                                     </div>
                                     

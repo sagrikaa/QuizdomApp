@@ -5,7 +5,7 @@
 
 import React,{useState,useEffect} from 'react'
 import {Redirect,Link} from 'react-router-dom';
-import { withFormik , Form,Field, ErrorMessage } from 'formik';
+import { withFormik , Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios';
 
@@ -18,11 +18,7 @@ const AddQuiz = (props)=>{
   useEffect(() => {
  
     axios.get('https://quizdom-backend.herokuapp.com/api/category')
-     .then(res=>setCategory(res.data));
-   
-   
-
-   
+     .then(res=>setCategory(res.data)); 
  },[]);
  
 
@@ -108,24 +104,14 @@ const FormikAddQuiz = withFormik(
       }
   },
     
-// validationSchema : Yup.object().shape({
-//     name:Yup.string().required('Name is  not required'),
-//     category:Yup.string().required('Please select a category'),
-//     difficult:Yup.string().required('Please select a Difficulty level'),
+validationSchema : Yup.object().shape({
+    name:Yup.string().required('Name is  not required'),
+    category:Yup.string().required('Please select a category'),
+    difficult:Yup.string().required('Please select a level difficulty'),
     
-// }),
+}),
 
- // Custom sync validation
- validate: values => {
-    const errors = {};
-
-    if (!values.name) {
-      errors.name = 'Required';
-    }
-
-    return errors;
-  },
-
+ 
 handleSubmit(values,{resetForm,setErrors,setSubmitting,setValues}){
       
         axios.post('https://quizdom-backend.herokuapp.com/api/quiz',values)
