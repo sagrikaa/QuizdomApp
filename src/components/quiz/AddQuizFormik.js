@@ -117,8 +117,6 @@ handleSubmit(values,{resetForm,setErrors,setSubmitting,setValues}){
         axios.post('https://quizdom-backend.herokuapp.com/api/quiz',values)
         .then(res => 
             {
-                console.log(res);
-              
                  sessionStorage.setItem('quizId',res.data._id);
                  setErrors({
                   

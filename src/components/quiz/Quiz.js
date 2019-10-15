@@ -69,17 +69,3 @@ export default class Quiz extends Component {
     }
 }
 
-Quiz.propTypes = {
-    // name:PropTypes.string.isRequired,
-    contact:PropTypes.object.isRequired,
-    phone:PropTypes.string.isRequired,
-    
-};
-
-Quiz.defaultProps={
-    name:"null",
-    phone:"null",
-  
-}
-
-/*Just checking */

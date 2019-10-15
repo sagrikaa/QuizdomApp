@@ -18,8 +18,7 @@ const AddQuestion = (props)=>{
    
     const addOption=()=>{
         
-        console.log(errors.option)
-        console.log(values.option)
+        
         if(values.option!==undefined && values.option!==''){
         var node = document.createElement("li");   
         var textnode = document.createTextNode(values.option);        
@@ -32,9 +31,15 @@ const AddQuestion = (props)=>{
              setOptionError(true)
             
         }
-        console.log(options)
+        
 
     }
+
+    useEffect(()=>{
+
+        values.options = options;
+    });
+
     return(
         <Consumer>
                 {
@@ -46,6 +51,7 @@ const AddQuestion = (props)=>{
                             <h3 className="card-header gradientNav" >Add Question</h3>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit}>
+
                                     <div className="form-group">
                                         <label htmlFor="name">Question</label>
                                         <Field type="text"  className={errors.question ? 'form-control is-invalid': 'form-control'}  name="question" placeholder="Question" />
@@ -59,7 +65,7 @@ const AddQuestion = (props)=>{
                                       <div className='row'>  
                                       <div className='col-md-6'>
 
-                                      <Field type="text" className={errors.option? 'form-control is-invalid': 'form-control'}  name="option" placeholder="Option.." />
+                                      <Field type="text" className={optionError? 'form-control is-invalid': 'form-control'}  name="option" placeholder="Option.." />
 
                                       <i style={{cursor:'pointer',color:'black'}} className="fas fa-plus-circle col-md-1 mt-3" onClick={addOption}></i>
 
@@ -68,12 +74,13 @@ const AddQuestion = (props)=>{
                                                 <ErrorMessage name='option'/> 
                                              </div> :null}
                                      </div>
-                                     
+                                     {/* Display entered options */}
                                       <label htmlFor="optionList" className='col-md-6'><ul  id='myOptions'></ul></label>
                                       </div>
                                       
                                     </div>
-
+                                    
+                                    {/* Retrieving dropdown options from options entered above */}
                                     <div className="form-group">
                                         <label htmlFor="name">Correct Answer</label>
                                         <Field className="form-control form-control-md"  name='correctAns' component="select">
@@ -83,9 +90,8 @@ const AddQuestion = (props)=>{
                                     </div>
             
                                    
-
-                                    
-                                    <input type="submit" className="btn btn-block gradientButton" value="Add" />
+                                   
+                                    <input type="submit" className="btn btn-block gradientButton" value="Add Question" />
                                 </form>
                             </div>
                             
@@ -102,7 +108,29 @@ const AddQuestionFormik= withFormik({
     mapPropsToValues(){},
     validationSchema: Yup.object().shape({
         question: Yup.string().required('Please enter a question'),
-        option:Yup.string().required('Please enter an option before clicking add')
-    })
+       // option:Yup.string().required('Please enter an option before clicking add')
+    }),
+
+    handleSubmit(values,{resetForm,setErrors,setSubmitting,setValues}){
+     
+        console.log(values);
+        let {question,options,correctAns} = values;  
+      
+        const questionset = {
+            
+            question,
+            options,
+            correctAns,
+            
+        };
+
+        console.log(questionset);
+        console.log(sessionStorage.getItem('quizId'))
+        axios.patch(`https://quizdom-backend.herokuapp.com/api/quiz/5cfff20f5b05145c8489d2c1/question`,questionset)
+        .then(res => console.log(res)
+        )
+
+     
+    }
 })(AddQuestion);
 export default AddQuestionFormik;

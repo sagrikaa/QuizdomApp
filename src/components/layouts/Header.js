@@ -70,7 +70,7 @@ toggleMenu=()=>{
 
                             <li className='icon' >
                             <button  className='btn' onClick={this.toggleMenu}>
-                                <i class="fa fa-bars"></i>
+                                <i className="fa fa-bars"></i>
                             </button>
                             </li>
                             
