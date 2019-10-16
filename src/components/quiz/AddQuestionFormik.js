@@ -14,7 +14,7 @@ import axios from 'axios';
 const AddQuestion = (props)=>{
     const [options,setOptions] = useState([]);
     const [optionError,setOptionError]=useState(false);
-    const {errors,handleSubmit,values,setErrors} = props;
+    const {errors,handleSubmit,values,status} = props;
    
     const addOption=()=>{
         
@@ -35,9 +35,28 @@ const AddQuestion = (props)=>{
 
     }
 
+   const resetForm=(reset)=>{
+        if(reset){
+            setOptions([]);
+            var ul=document.getElementById("myOptions");
+            var child=ul.lastElementChild;
+            while(child){
+                ul.removeChild(child);
+                child=ul.lastElementChild;
+            }
+        }
+    }
     useEffect(()=>{
 
         values.options = options;
+       
+        if(status)
+        {
+
+            resetForm(status.reset);
+            status.reset=false;
+
+        }
     });
 
     return(
@@ -111,7 +130,7 @@ const AddQuestionFormik= withFormik({
        // option:Yup.string().required('Please enter an option before clicking add')
     }),
 
-    handleSubmit(values,{resetForm,setErrors,setSubmitting,setValues}){
+    handleSubmit(values,{resetForm,setErrors,setSubmitting,setValues,setStatus}){
      
         console.log(values);
         let {question,options,correctAns} = values;  
@@ -126,8 +145,17 @@ const AddQuestionFormik= withFormik({
 
         console.log(questionset);
         console.log(sessionStorage.getItem('quizId'))
-        axios.patch(`https://quizdom-backend.herokuapp.com/api/quiz/5cfff20f5b05145c8489d2c1/question`,questionset)
-        .then(res => console.log(res)
+        axios.patch(`https://quizdom-backend.herokuapp.com/api/quiz/${sessionStorage.getItem('quizId')}/question`,questionset)
+        .then(res => 
+            {
+                console.log(res)
+                values.question=''
+                values.option=''
+                values.correctAns=''
+                values.options='';
+               setStatus({reset:true})
+            }
+
         )
 
      
