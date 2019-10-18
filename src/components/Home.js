@@ -3,18 +3,18 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css'
 // import './App.css';
-import Contacts from './contact/Contacts';
-import AddContact from './contact/AddContact';
+// import Contacts from './contact/Contacts';
+// import AddContact from './contact/AddContact';
 import Header from './layouts/Header';
 import ContactUs from '../components/ContactUs';
 import Provider from '../context';
-import AddQuizFormik from './quiz/AddQuizFormik';
+import AddQuizFormik from './quiz/createQuiz/AddQuizFormik';
 import Faq from  '../components/Faq';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import AddQuestionFormik from './quiz/AddQuestionFormik';
+import AddQuestionFormik from './quiz/createQuiz/AddQuestionFormik';
 import Dashboard from './Dashboard';
-import Quizes from './quiz/Quizes'
-import PlayQuiz from './quiz/PlayQuiz'
+import Quizes from './quiz/displayQuiz/Quizes'
+import PlayQuiz from './quiz/playQuiz/PlayQuiz'
 
 export default class Home extends Component {
 

@@ -118,9 +118,7 @@ handleSubmit(values,{resetForm,setErrors,setSubmitting,setValues}){
         .then(res => 
             {
                  sessionStorage.setItem('quizId',res.data._id);
-                 setErrors({
-                  
-                 })
+                 setErrors({})
             })
         setValues({redirect:true,nextQuestion:true})
         document.getElementById("addQuiz").disabled = true;

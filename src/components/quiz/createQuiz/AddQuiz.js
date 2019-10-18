@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Consumer} from '../../context';
+import {Consumer} from '../../../context';
 import axios from 'axios';
 import {Redirect,Link} from 'react-router-dom'
 class AddQuiz extends Component {

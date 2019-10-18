@@ -31,11 +31,11 @@ export default class Provider extends Component{
 
     state= {
         
-        contacts:[
-            {id:1,name:'sagrika aggarwal',email:'sagrika@gmail.com', phone:'666-666-6666' },
-            {id:2,name:'leo antonio',email:'leo@gmail.com',phone:'777-777-7777'},
-            {id:3,name:'bernardo sze',email:'b.sze@gmail.com',phone:'888-888-8888'}
-        ],
+        // contacts:[
+        //     {id:1,name:'sagrika aggarwal',email:'sagrika@gmail.com', phone:'666-666-6666' },
+        //     {id:2,name:'leo antonio',email:'leo@gmail.com',phone:'777-777-7777'},
+        //     {id:3,name:'bernardo sze',email:'b.sze@gmail.com',phone:'888-888-8888'}
+        // ],
 
         faqs:[],
 

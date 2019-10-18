@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Quiz from './displayQuiz/Quiz'
-import {Consumer} from '../../context'
+import Quiz from './Quiz'
+import {Consumer} from '../../../context'
 
 export default class Quizes extends Component {
   

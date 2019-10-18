@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {Consumer} from '../../context'
+import {Consumer} from '../../../context'
 import axios from 'axios'
 import {Link} from 'react-router-dom' 
-import { transform } from '@babel/core'
+
 export default class Quiz extends Component {
     state=
     {
@@ -18,7 +17,7 @@ export default class Quiz extends Component {
     }
 
     render() {
-        const {showItemDetails}=this.state;
+        
         const { _id,name,category,difficult,description}=this.props.quiz;
         return (
             <Consumer>

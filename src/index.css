@@ -69,7 +69,7 @@ code {
    color:white;
    text-transform: uppercase;
    height: 50px;
-   font-style: normal;
+   /* font-style: normal; */
   }
 
 /* 
@@ -92,7 +92,7 @@ code {
   text-align: center;
   padding: 10px 10x;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 27px;
 }
 
 .topnav li:hover {

@@ -3,12 +3,13 @@
  * @author: Sagrika Aggarwal.
  */
 
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react';
 import {Redirect,Link} from 'react-router-dom';
 import { withFormik , Field, ErrorMessage } from 'formik';
-import {Consumer} from '../../context';
-import * as Yup from 'yup'
+import {Consumer} from '../../../context';
+import * as Yup from 'yup';
 import axios from 'axios';
+import PreviewQuestions from './PreviewQuestions';
 // import undefined from 'firebase/empty-import';
 
 const AddQuestion = (props)=>{
@@ -37,6 +38,11 @@ const AddQuestion = (props)=>{
 
    const resetForm=(reset)=>{
         if(reset){
+            values.question='';
+            values.option='';
+            values.correctAns='';
+            values.options='';
+
             setOptions([]);
             var ul=document.getElementById("myOptions");
             var child=ul.lastElementChild;
@@ -66,7 +72,8 @@ const AddQuestion = (props)=>{
                         const {dispatch} = value;
 
                         return(
-                            <div className='card mb-3 col-md-6 offset-md-3'>
+                        <div className='row'>
+                            <div className='card col-md-5' style={{marginLeft:'100px'}}>
                             <h3 className="card-header gradientNav" >Add Question</h3>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit}>
@@ -116,6 +123,14 @@ const AddQuestion = (props)=>{
                             
                         </div>
                         
+                        
+                            <div className='card col-md-5 showQuestion' style={{marginLeft:'50px'}}>
+                                
+                                <PreviewQuestions id={`${sessionStorage.getItem('quizId')}`}/>
+                            </div>
+
+                           
+                        </div>
                             );
                     }
                 }
@@ -149,10 +164,8 @@ const AddQuestionFormik= withFormik({
         .then(res => 
             {
                 console.log(res)
-                values.question=''
-                values.option=''
-                values.correctAns=''
-                values.options='';
+               
+                setSubmitting(false)
                setStatus({reset:true})
             }
 
