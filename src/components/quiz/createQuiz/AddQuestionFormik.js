@@ -73,7 +73,8 @@ const AddQuestion = (props)=>{
 
                         return(
                         <div className='row'>
-                            <div className='card col-md-5' style={{marginLeft:'100px'}}>
+                        <div className='col'>
+                            <div className='card' style={{margin:'50px'}}>
                             <h3 className="card-header gradientNav" >Add Question</h3>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit}>
@@ -123,12 +124,14 @@ const AddQuestion = (props)=>{
                             
                         </div>
                         
-                        
-                            <div className='card col-md-5 showQuestion' style={{marginLeft:'50px'}}>
+                        </div>
+                        <div className='col'>
+
+                            <div className='card showQuestion' style={{margin:'50px'}}>
                                 <PreviewQuestions id={`${sessionStorage.getItem('quizId')}`}/>
                             </div>
 
-                           
+                            </div>
                         </div>
                             );
                     }

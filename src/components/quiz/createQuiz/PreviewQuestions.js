@@ -41,10 +41,7 @@ export default function PreviewQuestions(props) {
                    </li>
                   )} 
                    
-              
-
-               
-                
+                             
             </ul>
             </div> 
            {console.log(questionset)}
