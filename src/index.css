@@ -24,7 +24,6 @@ code {
 }
 
 .gradientButton {
-  /* background-image: linear-gradient(to right, rgb(255, 94, 0),red); */
   background-image: linear-gradient(to right, #FF8489,#D5ADC8);
   color:white;
 }

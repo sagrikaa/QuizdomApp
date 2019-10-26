@@ -14,7 +14,7 @@ export default function PreviewQuestions(props) {
        .then(res=>
         {
            setQuiz(res.data)
-         
+           console.log(res.data) 
            setQuestionset(res.data.questionset) 
         })
     },[quiz,props])

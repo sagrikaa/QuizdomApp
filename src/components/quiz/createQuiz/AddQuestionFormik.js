@@ -125,7 +125,6 @@ const AddQuestion = (props)=>{
                         
                         
                             <div className='card col-md-5 showQuestion' style={{marginLeft:'50px'}}>
-                                
                                 <PreviewQuestions id={`${sessionStorage.getItem('quizId')}`}/>
                             </div>
 

@@ -35,7 +35,7 @@ return(
             <div className="form-group">
                 <label htmlFor="name">Name</label>
                 
-                <Field className={errors.name ? 'form-control is-invalid': 'form-control'} type='textarea' name="name"/>
+                <Field className={errors.name ? 'form-control is-invalid': 'form-control'} type='textarea' name="name" placeholder='What do you want to call this quiz?'/>
               <div className='invalid-feedback'><ErrorMessage name="name" /></div>
                 
             </div>
@@ -69,11 +69,11 @@ return(
 
             <div className="form-group">
                 <label htmlFor="name">Description</label>
-                <Field type="textarea" className={errors.difficult ?'form-control is-invalid':'form-control'}  name="description" placeholder="Description" />
+                <Field type="textarea" className={errors.difficult ?'form-control is-invalid':'form-control'}  name="description" placeholder="Let your quizzers know what they are into!" />
             </div>
 
             
-             <input type="submit" id='addQuiz' className="btn btn-block gradientButton" value="Save Quiz" />
+             <input type="submit" id='addQuiz' className="btn btn-block gradientButton" value="Save Quiz"  style={{color:'white'}}  />
             
             {/* <button id='addQuestion' className="btn btn-block gradientButton" value="Add Question" style={{color:'white'}}> */}
                { values.nextQuestion?<Link to={'/addquestion'}  className='btn btn-block gradientButton'
