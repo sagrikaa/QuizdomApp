@@ -10,7 +10,6 @@ export default class Faq extends Component {
 
     render() {
         const {showItemDetails}=this.state;
-        // const {id,question,answer}=this.props.faq;
         return (
             <Consumer>
                 
