@@ -37,7 +37,7 @@ class App extends React.Component {
 							<Switch>
 								<Route exact path="/" name="Quizzes" component={Quizes} />
 								<PrivateRoute path="/addquiz" name="Add Quiz" component={AddQuizFormik} />
-								<Route path="/addQuestion" name="AddQuestion" component={AddQuestionFormik} />
+								<PrivateRoute path="/addQuestion" name="AddQuestion" component={AddQuestionFormik} />
 								<Route path="/contactus" name="Contact Us" component={ContactUs} />
 								<Route path="/faq" name="Frequently Asked Questions" component={Faq} />
 								<Route path="/login" name="Login" component={Login} />
