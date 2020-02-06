@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import fire from '../config/Fire';
-import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 
 class Login extends Component {
 	constructor(props) {
@@ -9,8 +9,10 @@ class Login extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.signup = this.signup.bind(this);
 		this.state = {
+			name: '',
 			email: '',
-			password: ''
+			password: '',
+			redirect: false
 		};
 	}
 
@@ -20,42 +22,22 @@ class Login extends Component {
 
 	login(e) {
 		e.preventDefault();
-		fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {}).catch((error) => {
-			console.log(error);
-			alert('Login Failed');
-		});
 
-		axios
-			.post('https://quizdom-backend.herokuapp.com/api/auth', {
-				email: this.state.email,
-				password: this.state.password
-			})
-			.then((res) => {
-				sessionStorage.setItem('credToken', res.data.token);
-				alert(`Login Successful with token ${res.data.token}`);
-			})
-			.catch((error) => {
-				console.log(error);
-				alert('Login Failed');
-			});
+		this.context.login(this.state.email, this.state.password);
 	}
 
 	signup(e) {
 		e.preventDefault();
-		fire
-			.auth()
-			.createUserWithEmailAndPassword(this.state.email, this.state.password)
-			.then((u) => {})
-			.then((u) => {
-				console.log(u);
-				alert('Sign Up Successful!');
-			})
-			.catch((error) => {
-				console.log(error);
-				alert('Sign Up Failed. Please Provide Email and Passwords');
-			});
+
+		this.context.signup(this.state.email, this.state.email, this.state.password);
+		if (this.context.user) this.setState({ redirect: true });
 	}
+
 	render() {
+		const { from } = this.props.location || { from: { pathname: '/' } };
+		if (this.context.user) {
+			return <Redirect to={from} />;
+		}
 		return (
 			<React.Fragment>
 				<div className=" card col-sm-4 offset-sm-4 mt-5 mb-5">
@@ -104,4 +86,6 @@ class Login extends Component {
 		);
 	}
 }
+
+Login.contextType = UserContext;
 export default Login;

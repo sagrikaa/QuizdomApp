@@ -3,6 +3,7 @@
 /src/components/contact
 /src/components/quiz/createQuiz/AddQuestion.js
 /src/components/quiz/createQuiz/AddQuiz.js
+/src/components/Home.js
 
 # dependencies
 /node_modules
