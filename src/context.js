@@ -3,35 +3,11 @@ import axios from 'axios';
 
 const Context = React.createContext();
 
-// const reducer = (state, action) => {
-// 	switch (action.type) {
-// 		case 'DELETE_CONTACT':
-// 			return {
-// 				// ...state,
-// 				contacts: state.contacts.filter((contact) => contact.id !== action.payload)
-// 			};
-
-// 		case 'ADD_CONTACT':
-// 			return {
-// 				...state,
-// 				contacts: [ action.payload, ...state.contacts ]
-// 			};
-
-// 		case 'DELETE_QUIZ':
-// 			return {
-// 				...state,
-// 				quizes: state.quizes.filter((quiz) => quiz._id !== action.payload)
-// 			};
-// 		default:
-// 			return state;
-// 	}
-// };
 export default class Provider extends Component {
 	state = {
 		faqs: [],
 		quizes: [],
 		categories: []
-		// dispatch: (action) => this.setState((state) => reducer(state, action))
 	};
 
 	componentDidMount() {
