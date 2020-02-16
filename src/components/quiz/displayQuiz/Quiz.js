@@ -16,7 +16,7 @@ export default class Quiz extends Component {
 	};
 
 	render() {
-		const { _id, name, category, difficult, description } = this.props.quiz;
+		const { name, category, difficult, description } = this.props.quiz;
 		return (
 			<Consumer>
 				{(value) => {
