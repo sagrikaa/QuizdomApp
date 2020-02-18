@@ -1,10 +1,24 @@
-import React, { createContext, useState } from 'react';
+/**
+ * 
+ * @author: Sagrika Aggarwal.
+ */
+
+import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const UserContext = createContext();
 
 export const UserProvider = (props) => {
 	const [ user, setUser ] = useState();
+	const [ token, setToken ] = useState('');
+
+	useEffect(
+		() => {
+			setToken(sessionStorage.getItem('auth-token'));
+			if (token) setGlobalUser(sessionStorage.getItem('auth-token'));
+		},
+		[ token ]
+	);
 
 	const signup = (name, email, password) => {
 		axios
@@ -34,7 +48,7 @@ export const UserProvider = (props) => {
 			.then((res) => {
 				//Setting token for the whole session
 				sessionStorage.setItem('auth-token', res.data.token);
-				setGlobalUser(res.data.token);
+				setGlobalUser(sessionStorage.getItem('auth-token'));
 				alert(`Login Successful with token`);
 			})
 			.catch((error) => {

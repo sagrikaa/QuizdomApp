@@ -1,15 +1,23 @@
+/**
+ * 
+ * @author: Sagrika Aggarwal.
+ */
+
 import React, { Component } from 'react';
 import Question from './Question';
-import { Redirect, Link } from 'react-router-dom';
 export default class PlayQuiz extends Component {
 	get quiz() {
 		return this.props.location.state.quiz;
 	}
 
-	state = {
-		showAns: false,
-		resultArray: Array(this.quiz.questionset.length).fill(false)
-	};
+	initialState() {
+		return {
+			showAns: false,
+			resultArray: Array(this.quiz.questionset.length).fill(false)
+		};
+	}
+
+	state = this.initialState();
 
 	alterResultArray = (i, selectedOption) => {
 		const { questionset } = this.quiz;
@@ -36,11 +44,11 @@ export default class PlayQuiz extends Component {
 
 	// onRedirect = () => {
 	// 	const location = {
-	// 		pathname: '/quizzes',
+	// 		pathname: '/playquiz',
 	// 		state: 'hello'
 	// 	};
 
-	// 	return <Redirect to="/quizzes" />;
+	// 	return <Redirect to={location} />;
 	// };
 
 	render() {
@@ -83,17 +91,20 @@ export default class PlayQuiz extends Component {
 
 							<li className="list-group-item">
 								{this.state.showAns ? (
-									// <input
-									// 	type="submit"
-									// 	id="tryAgain"
-									// 	className="btn btn-block gradientButton"
-									// 	value="Try Again"
-									// 	onClick={this.onRedirect}
-									// />
-									<Link to="/quizzes" className="btn btn-block gradientButton">
-										Try a new Quiz
-									</Link>
+									<button
+										type="button"
+										id="tryAgain"
+										className="btn btn-block gradientButton"
+										value="Try Again"
+										onClick={() => {
+											this.setState(this.initialState());
+										}}>
+										Try Again
+									</button>
 								) : (
+									// <Link to="/quizzes" className="btn btn-block gradientButton">
+									// 	Try a new Quiz
+									// </Link>
 									<input
 										type="submit"
 										id="getResult"

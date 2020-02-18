@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author: Sagrika Aggarwal.
+ */
+
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from '../UserContext';

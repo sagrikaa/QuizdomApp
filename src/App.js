@@ -1,11 +1,20 @@
+/**
+ * 
+ * @author: Sagrika Aggarwal.
+ */
+
+//React imports
 import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
+// Context imports
 import { UserProvider, UserContext } from './UserContext';
 import Provider from './context';
+import { QuizProvider, QuizContext } from './QuizContext';
 
+//Component imports
 import AddQuestionFormik from './components/quiz/createQuiz/AddQuestionFormik';
 import AddQuizFormik from './components/quiz/createQuiz/AddQuizFormik';
 import ContactUs from './components/ContactUs';
@@ -32,19 +41,25 @@ class App extends React.Component {
 			<UserProvider>
 				<BrowserRouter>
 					<Provider>
-						<div>
-							<Header branding="Quizdom" />
-							<Switch>
-								<Route exact path="/" name="Quizzes" component={Quizes} />
-								<PrivateRoute path="/addquiz" name="Add Quiz" component={AddQuizFormik} />
-								<PrivateRoute path="/addQuestion" name="AddQuestion" component={AddQuestionFormik} />
-								<Route path="/contactus" name="Contact Us" component={ContactUs} />
-								<Route path="/faq" name="Frequently Asked Questions" component={Faq} />
-								<Route path="/login" name="Login" component={Login} />
-								<Route path="/playquiz" name="PlayQuiz" component={PlayQuiz} />
-								<Route path="/quizzes" name="Quizzez" component={Quizes} />
-							</Switch>
-						</div>
+						<QuizProvider>
+							<div>
+								<Header branding="Quizdom" />
+								<Switch>
+									<Route exact path="/" name="Quizzes" component={Quizes} />
+									<PrivateRoute path="/addquiz" name="Add Quiz" component={AddQuizFormik} />
+									<PrivateRoute
+										path="/addQuestion"
+										name="AddQuestion"
+										component={AddQuestionFormik}
+									/>
+									<Route path="/contactus" name="Contact Us" component={ContactUs} />
+									<Route path="/faq" name="Frequently Asked Questions" component={Faq} />
+									<Route path="/login" name="Login" component={Login} />
+									<Route path="/playquiz" name="PlayQuiz" component={PlayQuiz} />
+									<Route path="/quizzes" name="Quizzez" component={Quizes} />
+								</Switch>
+							</div>
+						</QuizProvider>
 					</Provider>
 				</BrowserRouter>
 			</UserProvider>

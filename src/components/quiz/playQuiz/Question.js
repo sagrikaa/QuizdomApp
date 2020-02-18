@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author: Sagrika Aggarwal.
+ */
+
 import React, { Component } from 'react';
 
 // const TickCross = (props) => {
