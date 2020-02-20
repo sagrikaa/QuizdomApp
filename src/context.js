@@ -17,12 +17,12 @@ export default class Provider extends Component {
 
 		axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => {
 			this.setState({ categories: res.data });
-			console.log(this.state.categories);
+			// console.log(this.state.categories);
 		});
 
 		axios.get('https://quizdom-backend.herokuapp.com/api/faq').then((res) => {
 			this.setState({ faqs: res.data });
-			console.log(this.state.faqs);
+			// console.log(this.state.faqs);
 		});
 	}
 
