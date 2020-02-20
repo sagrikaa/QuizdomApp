@@ -3,13 +3,71 @@
  * @author: Sagrika Aggarwal.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 // import { Redirect, Link } from 'react-router-dom';
-import { withFormik, Field, ErrorMessage } from 'formik';
+import { Field, ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import PreviewQuestions from './PreviewQuestions';
+import { QuizContext } from '../../../QuizContext';
 
+const OutterComponent = (props) => {
+	const value = useContext(QuizContext);
+
+	const { addQuestion, quiz } = value;
+	return (
+		<Formik
+			initialValues={{
+				question: '',
+				option: '',
+				correctAns: ''
+			}}
+			onSubmit={(values, actions) => {
+				// const { quiz, setQuiz } = props.location.status;
+				let { question, options, correctAns } = values;
+
+				const questionset = {
+					question,
+					options,
+					correctAns
+				};
+
+				console.log(questionset);
+				addQuestion(questionset);
+				actions.resetForm();
+				actions.setStatus({ reset: true });
+				actions.setSubmitting(false);
+				// console.log(sessionStorage.getItem('quizId'));
+				// axios
+				// 	.patch(
+				// 		`https://quizdom-backend.herokuapp.com/api/quiz/${sessionStorage.getItem('quizId')}/question`,
+				// 		questionset
+				// 	)
+				// 	.then((res) => {
+				// 		console.log(res);
+
+				// 		setSubmitting(false);
+				// 		setStatus({ reset: true });
+				// 	});
+			}}
+			validationSchema={Yup.object().shape({
+				question: Yup.string().required('Please enter a question'),
+				correctAns: Yup.string().required('Please select a correct ans from the list')
+				// option: Yup.string().required('Please enter an option before clicking add')
+			})}>
+			{/* Form Inner component starts*/}
+			{({ handleSubmit, errors, values, touched, status }) => (
+				<AddQuestion
+					errors={errors}
+					handleSubmit={handleSubmit}
+					values={values}
+					status={status}
+					touched={touched}
+				/>
+			)}
+		</Formik>
+	);
+};
 const Options = (props) => (
 	<label htmlFor="optionList" className="col-md-6">
 		<ul id="myOptions">{props.options.map((o) => <li key={o}>{o}</li>)}</ul>
@@ -19,7 +77,7 @@ const AddQuestion = (props) => {
 	const [ options, setOptions ] = useState([]);
 	const [ optionError, setOptionError ] = useState(false);
 	const { errors, handleSubmit, values, status, touched } = props;
-
+	const { quiz, postQuiz } = useContext(QuizContext);
 	const addOption = () => {
 		if (values.option !== undefined && values.option !== '') {
 			setOptions([ ...options, values.option ]);
@@ -40,6 +98,17 @@ const AddQuestion = (props) => {
 			setOptions([]);
 		}
 	};
+
+	// const SaveQuiz = (e, published) => {
+	// 	let quiz_temp = quiz;
+	// 	quiz_temp.creatorId = '5e33a1baac64085b044514fb';
+	// 	quiz_temp.published = published;
+	// 	axios.post('http://localhost:2000/api/quiz', quiz_temp).then((res) => {
+	// 		// sessionStorage.setItem('quizId', res.data._id);
+	// 		// actions.setErrors({});
+	// 		console.log(res.data);
+	// 	});
+	// };
 	useEffect(() => {
 		values.options = options;
 		if (status) {
@@ -132,55 +201,27 @@ const AddQuestion = (props) => {
 					</div>
 				</div>
 			</div>
+
 			<div className="col">
 				<div className="card showQuestion" style={{ margin: '50px' }}>
-					<PreviewQuestions id={`${sessionStorage.getItem('quizId')}`} />
+					<PreviewQuestions />
 				</div>
 			</div>
+			<input
+				type="button"
+				className="btn btn-block gradientButton"
+				value="Save"
+				onClick={() => postQuiz(false)}
+			/>
+
+			{/* <input
+				type="button"
+				className="btn btn-block gradientButton"
+				value="Save and Publish"
+				onClick={SaveQuiz(true)}
+			/> */}
 		</div>
 	);
 };
 
-const AddQuestionFormik = withFormik({
-	mapPropsToValues() {
-		return {
-			question: '',
-			option: '',
-			correctAns: ''
-		};
-	},
-	validationSchema: Yup.object().shape({
-		question: Yup.string().required('Please enter a question'),
-		correctAns: Yup.string().required('Please select a correct ans from the list')
-		// option: Yup.string().required('Please enter an option before clicking add')
-	}),
-
-	handleSubmit(values, { resetForm, setErrors, setSubmitting, setValues, setStatus, props }) {
-		// const { quiz, setQuiz } = props.location.status;
-		let { question, options, correctAns } = values;
-
-		const questionset = {
-			question,
-			options,
-			correctAns
-		};
-
-		console.log(questionset);
-		resetForm();
-		setStatus({ reset: true });
-		setSubmitting(false);
-		// console.log(sessionStorage.getItem('quizId'));
-		// axios
-		// 	.patch(
-		// 		`https://quizdom-backend.herokuapp.com/api/quiz/${sessionStorage.getItem('quizId')}/question`,
-		// 		questionset
-		// 	)
-		// 	.then((res) => {
-		// 		console.log(res);
-
-		// 		setSubmitting(false);
-		// 		setStatus({ reset: true });
-		// 	});
-	}
-})(AddQuestion);
-export default AddQuestionFormik;
+export default OutterComponent;

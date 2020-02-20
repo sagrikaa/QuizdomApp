@@ -15,7 +15,7 @@ import Provider from './context';
 import { QuizProvider, QuizContext } from './QuizContext';
 
 //Component imports
-import AddQuestionFormik from './components/quiz/createQuiz/AddQuestionFormik';
+import AddQuestionFormik from './components/quiz/createQuiz/AddQuestion';
 import AddQuizFormik from './components/quiz/createQuiz/AddQuizFormik';
 import ContactUs from './components/ContactUs';
 import Faq from './components/Faq';

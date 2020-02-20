@@ -3,25 +3,52 @@
  * @author: Sagrika Aggarwal.
  */
 
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { UserContext } from './UserContext';
+import { Redirect } from 'react-router-dom';
 
 export const QuizContext = createContext();
 
 export const QuizProvider = (props) => {
 	const [ categories, setCategory ] = useState([]);
 	const [ quiz, setQuiz ] = useState({});
+	const value = useContext(UserContext);
 
-	const createQuiz = (name, category, diff, description) => {
-		console.log('hey');
-		// setQuiz({ name, category, diff, description });
-		// console.log(quiz);
+	const postQuiz = (published) => {
+		let quiz_temp = quiz;
+		quiz_temp.creatorId = value.user._id;
+		quiz_temp.published = published;
+		axios.post('https://quizdom-backend.herokuapp.com/api/quiz', quiz_temp).then((res) => {
+			console.log(res.data);
+			alert('Success!!');
+		});
 	};
-	useEffect(() => {
-		axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => setCategory(res.data));
-	}, []);
+	const createQuiz = (name, category, difficult, description, questionset) => {
+		setQuiz({ name, category, difficult, description, questionset });
+	};
+	const addQuestion = (set) => {
+		if (quiz.questionset) {
+			let quiz_temp = quiz;
+			quiz_temp.questionset.push(set);
+			setQuiz(quiz_temp);
+		} else {
+			alert('No Quiz selected! Please go back to create quiz!');
+		}
+	};
+	useEffect(
+		() => {
+			axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => setCategory(res.data));
+			console.log(quiz);
+		},
+		[ quiz ]
+	);
 
-	return <QuizContext.Provider value={{ categories, createQuiz }}>{props.children}</QuizContext.Provider>;
+	return (
+		<QuizContext.Provider value={{ quiz, categories, createQuiz, addQuestion, postQuiz }}>
+			{props.children}
+		</QuizContext.Provider>
+	);
 };
 
 export const QuizConsumer = QuizContext.Consumer;
