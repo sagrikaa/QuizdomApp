@@ -15,8 +15,8 @@ class Login extends Component {
 		this.signup = this.signup.bind(this);
 		this.state = {
 			name: '',
-			email: '',
-			password: '',
+			email: 'sagrika@gmail.com',
+			password: '123456',
 			redirect: false
 		};
 	}
