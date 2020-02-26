@@ -135,12 +135,35 @@ code {
 
 }
 
-.faq-ans {
+.faq-ans,
+.login-box {
   margin-bottom: 10px;
-  animation: openUp .8s normal;
+  animation: MoveInDown .8s normal;
 }
 
-@keyframes openUp {
+.moving-box {
+  animation: MoveInUp .8s ease-in-out;
+
+}
+
+@keyframes MoveInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  70% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes MoveInDown {
   0% {
     opacity: 0;
     transform: translateY(-50px);

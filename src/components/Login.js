@@ -45,8 +45,8 @@ class Login extends Component {
 		}
 		return (
 			<React.Fragment>
-				<div className=" card col-sm-4 offset-sm-4 mt-5 mb-5">
-					<form>
+				<div className="card col-sm-4 offset-sm-4 mt-3 login-box">
+					<form className="m-3">
 						<div className="form-group">
 							<label htmlFor="exampleInputEmail1">Email address</label>
 							<input

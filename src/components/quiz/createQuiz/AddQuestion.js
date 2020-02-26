@@ -32,7 +32,6 @@ const OutterComponent = (props) => {
 					correctAns
 				};
 
-				console.log(questionset);
 				addQuestion(questionset);
 				actions.resetForm();
 				actions.setStatus({ reset: true });
@@ -57,13 +56,15 @@ const OutterComponent = (props) => {
 			})}>
 			{/* Form Inner component starts*/}
 			{({ handleSubmit, errors, values, touched, status }) => (
-				<AddQuestion
-					errors={errors}
-					handleSubmit={handleSubmit}
-					values={values}
-					status={status}
-					touched={touched}
-				/>
+				<div className="m-3">
+					<AddQuestion
+						errors={errors}
+						handleSubmit={handleSubmit}
+						values={values}
+						status={status}
+						touched={touched}
+					/>
+				</div>
 			)}
 		</Formik>
 	);
@@ -120,7 +121,7 @@ const AddQuestion = (props) => {
 	return (
 		<div className="row">
 			<div className="col">
-				<div className="card" style={{ margin: '50px' }}>
+				<div className="card">
 					<h3 className="card-header gradientNav">Add Question</h3>
 					<div className="card-body">
 						<form onSubmit={handleSubmit}>
@@ -216,7 +217,7 @@ const AddQuestion = (props) => {
 			</div>
 
 			<div className="col">
-				<div className="card showQuestion" style={{ margin: '50px' }}>
+				<div className="card showQuestion">
 					<PreviewQuestions />
 				</div>
 			</div>
