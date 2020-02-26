@@ -17,7 +17,7 @@ const AddQuiz = (props) => {
 	const [ redirect, setRedirect ] = useState(false);
 
 	return (
-		<div className="card mb-3 col-md-6 offset-md-3">
+		<div className="card mb-3 col-md-6 offset-md-3 mt-3">
 			<h3 className="card-header gradientNav">
 				Add Quiz
 				{/* <i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i>

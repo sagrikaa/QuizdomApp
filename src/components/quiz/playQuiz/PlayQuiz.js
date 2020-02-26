@@ -56,7 +56,7 @@ export default class PlayQuiz extends Component {
 		const { questionset } = quiz;
 
 		return (
-			<div className=" card col-md-8 offset-md-2">
+			<div className=" card col-md-8 offset-md-2 mt-3">
 				{/* Header Starts*/}
 				<div className="m-3 quizHeader text-center">
 					<h3 className="m-3">{quiz.name.toUpperCase()}</h3>

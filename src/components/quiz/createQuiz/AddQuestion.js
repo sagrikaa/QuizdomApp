@@ -197,6 +197,19 @@ const AddQuestion = (props) => {
 							</div>
 
 							<input type="submit" className="btn btn-block gradientButton" value="Add Question" />
+							<input
+								type="button"
+								className="btn btn-block gradientButton"
+								value="Save"
+								onClick={() => postQuiz(false)}
+							/>
+
+							{/* <input
+				type="button"
+				className="btn btn-block gradientButton"
+				value="Save and Publish"
+				onClick={SaveQuiz(true)}
+			/> */}
 						</form>
 					</div>
 				</div>
@@ -207,19 +220,6 @@ const AddQuestion = (props) => {
 					<PreviewQuestions />
 				</div>
 			</div>
-			<input
-				type="button"
-				className="btn btn-block gradientButton"
-				value="Save"
-				onClick={() => postQuiz(false)}
-			/>
-
-			{/* <input
-				type="button"
-				className="btn btn-block gradientButton"
-				value="Save and Publish"
-				onClick={SaveQuiz(true)}
-			/> */}
 		</div>
 	);
 };

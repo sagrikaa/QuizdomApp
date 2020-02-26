@@ -15,7 +15,7 @@ import Provider from './context';
 import { QuizProvider, QuizContext } from './QuizContext';
 
 //Component imports
-import AddQuestionFormik from './components/quiz/createQuiz/AddQuestion';
+import AddQuestion from './components/quiz/createQuiz/AddQuestion';
 import AddQuizFormik from './components/quiz/createQuiz/AddQuizFormik';
 import ContactUs from './components/ContactUs';
 import Faq from './components/Faq';
@@ -49,14 +49,10 @@ class App extends React.Component {
 								<Header2 branding="Quizdom" />
 								<Switch>
 									<Route exact path="/" name="Quizzes" component={Quizes} />
-									<PrivateRoute path="/addquiz" name="Add Quiz" component={AddQuizFormik} />
-									<PrivateRoute
-										path="/addQuestion"
-										name="AddQuestion"
-										component={AddQuestionFormik}
-									/>
-									<Route path="/contactus" name="Contact Us" component={ContactUs} />
-									<Route path="/faq" name="Frequently Asked Questions" component={Faq} />
+									<PrivateRoute path="/addquiz" name="AddQuiz" component={AddQuizFormik} />
+									<PrivateRoute path="/addQuestion" name="AddQuestion" component={AddQuestion} />
+									<Route path="/contactus" name="ContactUs" component={ContactUs} />
+									<Route path="/faq" name="FAQ" component={Faq} />
 									<Route path="/login" name="Login" component={Login} />
 									<Route path="/playquiz" name="PlayQuiz" component={PlayQuiz} />
 									<Route path="/quizzes" name="Quizzez" component={Quizes} />

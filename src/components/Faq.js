@@ -40,7 +40,7 @@ export default class Faqs extends Component {
 					const { dispatch } = value;
 					const { faqs } = value;
 					return (
-						<Card body className="col-10 offset-1 mt-3">
+						<Card body className="col-8 offset-2 mt-3">
 							{/* {faqs.map((faq) => (
 								<div className="card card-body mb-3">
 									<h4>
