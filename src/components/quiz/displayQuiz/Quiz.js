@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import Badge from 'react-bootstrap/Badge';
 export default class Quiz extends Component {
 	state = {
 		showItemDetails: false
@@ -60,11 +60,14 @@ export default class Quiz extends Component {
 									<Card.Text>{description}</Card.Text>
 								</Card.Body>
 								<Card.Footer>
-									{category ? (
-										<span className="mr-auto">Category: {cat.map((c) => c.name)}</span>
-									) : null}
+									<Badge pill variant="dark">
+										{cat.map((c) => c.name.toUpperCase())}
+									</Badge>
+
 									<div pan className="ml-auto">
-										{difficult ? difficult.toUpperCase() : null}
+										<Badge pill variant="info">
+											{difficult ? difficult.toUpperCase() : null}
+										</Badge>
 									</div>
 								</Card.Footer>
 							</Card>

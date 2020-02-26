@@ -19,7 +19,7 @@ import AddQuestionFormik from './components/quiz/createQuiz/AddQuestion';
 import AddQuizFormik from './components/quiz/createQuiz/AddQuizFormik';
 import ContactUs from './components/ContactUs';
 import Faq from './components/Faq';
-import Header from './components/layouts/Header';
+// import Header from './components/layouts/Header';
 import Header2 from './components/layouts/Header2';
 
 import Login from './components/Login';

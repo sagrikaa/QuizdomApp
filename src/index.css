@@ -14,13 +14,6 @@ code {
     monospace;
 }
 
-.carousel {
-
-  height: 200px;
-  display: block;
-
-}
-
 .gradientButton {
   background-image: linear-gradient(to right, #FF8489, #D5ADC8);
   color: white;
@@ -139,6 +132,29 @@ code {
     padding: 0 10px;
 
   }
+
+}
+
+.faq-ans {
+  margin-bottom: 10px;
+  animation: openUp .8s normal;
+}
+
+@keyframes openUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  70% {
+    transform: translateY(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
 
 /* #EE5253#D3D3D3 */
