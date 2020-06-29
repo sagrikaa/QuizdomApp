@@ -10,10 +10,11 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import PreviewQuestions from './PreviewQuestions';
 import { QuizContext } from '../../../QuizContext';
+import { UserContext } from '../../../UserContext';
 
 const OutterComponent = (props) => {
 	const value = useContext(QuizContext);
-
+	const { user } = useContext(UserContext);
 	const { addQuestion, quiz } = value;
 	return (
 		<Formik

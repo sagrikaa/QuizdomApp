@@ -16,6 +16,7 @@ export const QuizProvider = (props) => {
 	const value = useContext(UserContext);
 
 	const postQuiz = (published) => {
+		console.log(value);
 		let quiz_temp = quiz;
 		quiz_temp.creatorId = value.user._id;
 		quiz_temp.published = published;

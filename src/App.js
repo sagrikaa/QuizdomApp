@@ -4,6 +4,7 @@
  */
 
 //React imports
+import './App.scss';
 import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -44,7 +45,7 @@ class App extends React.Component {
 				<BrowserRouter>
 					<Provider>
 						<QuizProvider>
-							<div>
+							<div className="App">
 								{/* <Header branding="Quizdom" /> */}
 								<Header2 branding="Quizdom" />
 								<Switch>

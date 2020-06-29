@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 
 const Context = React.createContext();
@@ -11,7 +12,7 @@ export default class Provider extends Component {
 	};
 
 	componentDidMount() {
-		axios.get('https://quizdom-backend.herokuapp.com/api/quiz').then((res) => {
+		axios.get('http://localhost:2000/api/quiz').then((res) => {
 			this.setState({ quizes: res.data });
 		});
 
