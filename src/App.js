@@ -25,7 +25,7 @@ import Header2 from './components/layouts/Header2';
 
 import Login from './components/Login';
 import PlayQuiz from './components/quiz/playQuiz/PlayQuiz';
-import Quizes from './components/quiz/displayQuiz/Quizes';
+import Quizzes from './components/quiz/displayQuiz/Quizzes';
 
 function PrivateRoute({ component: Component, ...rest }) {
 	const value = useContext(UserContext);
@@ -49,14 +49,14 @@ class App extends React.Component {
 								{/* <Header branding="Quizdom" /> */}
 								<Header2 branding="Quizdom" />
 								<Switch>
-									<Route exact path="/" name="Quizzes" component={Quizes} />
+									<Route exact path="/" name="Quizzes" component={Quizzes} />
 									<PrivateRoute path="/addquiz" name="AddQuiz" component={AddQuizFormik} />
 									<PrivateRoute path="/addQuestion" name="AddQuestion" component={AddQuestion} />
 									<Route path="/contactus" name="ContactUs" component={ContactUs} />
 									<Route path="/faq" name="FAQ" component={Faq} />
 									<Route path="/login" name="Login" component={Login} />
 									<Route path="/playquiz" name="PlayQuiz" component={PlayQuiz} />
-									<Route path="/quizzes" name="Quizzes" component={Quizes} />
+									<Route path="/quizzes" name="Quizzes" component={Quizzes} />
 								</Switch>
 							</div>
 						</QuizProvider>

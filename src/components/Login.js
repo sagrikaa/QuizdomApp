@@ -27,28 +27,26 @@ class Login extends Component {
 
 	login(e) {
 		e.preventDefault();
-
 		this.context.login(this.state.email, this.state.password);
 	}
 
 	signup(e) {
 		e.preventDefault();
-
 		this.context.signup(this.state.email, this.state.email, this.state.password);
 		if (this.context.user) this.setState({ redirect: true });
 	}
 
 	render() {
 		const { from } = this.props.location || { from: { pathname: '/' } };
-		if (this.context.user) {
-			return <Redirect to={from} />;
-		}
+
+		if (this.context.user) return <Redirect to={from} />;
+
 		return (
 			<form className="form form-login">
 				<div className="form_group">
 					<input
 						type="email"
-						class="form_input"
+						className="form_input"
 						placeholder="Email"
 						id="email"
 						required
@@ -57,7 +55,7 @@ class Login extends Component {
 						name="email"
 						aria-describedby="emailHelp"
 					/>
-					<label for="email" class="form_label">
+					<label htmlFor="email" className="form_label">
 						Email
 					</label>
 					<small id="emailHelp" className="form-text text-muted">
@@ -75,7 +73,7 @@ class Login extends Component {
 						placeholder="Password"
 						required
 					/>
-					<label for="password" class="form_label">
+					<label htmlFor="password" className="form_label">
 						Password
 					</label>
 				</div>

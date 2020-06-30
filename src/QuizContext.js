@@ -12,29 +12,15 @@ export const QuizContext = createContext();
 
 export const QuizProvider = (props) => {
 	//General App data
-	const [ quizzes, setQuizzes ] = useState({});
+	const [ quizzes, setQuizzes ] = useState([]);
 	const [ categories, setCategories ] = useState([]);
-	const [ faq, setFaq ] = useState({});
+	const [ faq, setFaq ] = useState([]);
 
 	//New quiz related data
 	const [ quiz, setQuiz ] = useState({});
 	const [ category, setCategory ] = useState([]);
 
 	const value = useContext(UserContext);
-
-	useEffect(() => {
-		axios.get('https://quizdom-backend.herokuapp.com/api/quiz').then((res) => {
-			setQuizzes(res.data);
-		});
-
-		axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => {
-			setCategories(res.data);
-		});
-
-		axios.get('https://quizdom-backend.herokuapp.com/api/faq').then((res) => {
-			setFaq(res.data);
-		});
-	}, []);
 
 	const postQuiz = (published) => {
 		let quiz_temp = quiz;
@@ -48,6 +34,7 @@ export const QuizProvider = (props) => {
 	const createQuiz = (name, category, difficult, description, questionset) => {
 		setQuiz({ name, category, difficult, description, questionset });
 	};
+
 	const addQuestion = (set) => {
 		if (quiz.questionset) {
 			let quiz_temp = quiz;
@@ -57,14 +44,26 @@ export const QuizProvider = (props) => {
 			alert('No Quiz selected! Please go back to create quiz!');
 		}
 	};
+
 	useEffect(
 		() => {
 			axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => setCategory(res.data));
-			console.log(quiz);
+
+			axios.get('https://quizdom-backend.herokuapp.com/api/quiz').then((res) => {
+				setQuizzes(res.data);
+			});
+			axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => {
+				setCategories(res.data);
+			});
+
+			axios.get('https://quizdom-backend.herokuapp.com/api/faq').then((res) => {
+				setFaq(res.data);
+			});
 		},
 		[ quiz ]
 	);
 
+	// useEffect(() => {}, [ quiz ]);
 	return (
 		<QuizContext.Provider value={{ quizzes, faq, categories, quiz, category, createQuiz, addQuestion, postQuiz }}>
 			{props.children}

@@ -57,7 +57,7 @@ export default function ContactUs(props) {
 							setName(e.target.value);
 						}}
 					/>
-					<label for="name" className="form_label">
+					<label htmlFor="name" className="form_label">
 						Name
 					</label>
 				</div>
@@ -65,7 +65,7 @@ export default function ContactUs(props) {
 				<div className="form_group">
 					<input
 						type="email"
-						class="form_input"
+						className="form_input"
 						placeholder="Email"
 						id="email"
 						required
@@ -75,14 +75,14 @@ export default function ContactUs(props) {
 						}}
 						name="email"
 					/>
-					<label for="email" className="form_label">
+					<label htmlFor="email" className="form_label">
 						Email
 					</label>
 				</div>
 				<div className="form_group">
 					<textarea
 						type="text"
-						class="form_input"
+						className="form_input"
 						placeholder="Message"
 						id="message"
 						required
@@ -92,7 +92,7 @@ export default function ContactUs(props) {
 						}}
 						name="message"
 					/>
-					<label for="message" className="form_label">
+					<label htmlFor="message" className="form_label">
 						Message
 					</label>
 				</div>

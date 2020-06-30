@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import Nav from 'react-bootstrap/Nav';

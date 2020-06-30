@@ -1,57 +1,50 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 import { Consumer } from '../../../context';
-import axios from 'axios';
+import { QuizContext } from '../../../QuizContext';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
-export default class Quiz extends Component {
-	state = {
-		showItemDetails: false
-	};
+import img from '../../../asset/img/questionmark.jpg';
+export const Quiz = (props) => {
+	// const [ showDetails, setShowDetails ] = useState();
 
-	deleteQuiz = (id, dispatch) => {
-		dispatch({ type: 'DELETE_QUIZ', payload: id });
-		axios.delete('https://quizdom-backend.herokuapp.com/api/quiz', { data: { id } }).then((res) => {
-			console.log(res);
-		});
-	};
+	const { name, category, difficult, description } = props.quiz;
+	const value = useContext(QuizContext);
+	const { categories } = value;
+	const cat = categories.filter((c) => c._id === category);
 
-	render() {
-		console.log(this.props.quiz);
-		const { name, category, difficult, description, getUser } = this.props.quiz;
-		return (
-			<Consumer>
-				{(value) => {
-					const { categories } = value;
-					const cat = categories.filter((c) => c._id === category);
-
-					return (
-						<Link
-							to={{ pathname: '/playquiz', state: { quiz: this.props.quiz } }}
-							style={{ textDecoration: 'none' }}>
-							<Card text="dark" border="black" className="text-center" style={{ margin: '20px' }}>
-								<Card.Header>
-									<Card.Title>{name}</Card.Title>
-								</Card.Header>
-								<Card.Body>
-									<Card.Title />
-									<Card.Text>{description}</Card.Text>
-								</Card.Body>
-								<Card.Footer>
-									<Badge pill variant="dark">
-										{cat.map((c) => c.name.toUpperCase())}
-									</Badge>
-									<div className="ml-auto">
-										<Badge pill variant="info">
-											{difficult ? difficult.toUpperCase() : null}
-										</Badge>
-									</div>
-								</Card.Footer>
-							</Card>
-						</Link>
-					);
-				}}
-			</Consumer>
-		);
-	}
-}
+	return (
+		<Link to={{ pathname: '/playquiz', state: { quiz: props.quiz } }} style={{ textDecoration: 'none' }}>
+			{/* <Card text="dark" border="black" className="text-center" style={{ margin: '20px' }}>
+				<Card.Header>
+					<Card.Title>{name}</Card.Title>
+				</Card.Header>
+				<Card.Body>
+					<Card.Title />
+					<Card.Text>{description}</Card.Text>
+				</Card.Body>
+				<Card.Footer>
+					<Badge pill variant="dark">
+						{cat.map((c) => c.name.toUpperCase())}
+					</Badge>
+					<div className="ml-auto">
+						<Badge pill variant="info">
+							{difficult ? difficult.toUpperCase() : null}
+						</Badge>
+					</div>
+				</Card.Footer>
+			</Card> */}
+			<div className="quiz">
+				<img src={img} alt="randomimg" className="quiz_img" />
+				<div className="quiz_content">
+					<h3 className="quiz_title">{name}</h3>
+					<p className="quiz_description">{description}</p>
+					<h6 className="quiz_difficulty"> {difficult ? difficult.toUpperCase() : null}</h6>
+				</div>
+				<div className="quiz_categories">
+					<h6 className="quiz_category"> {cat.map((c) => `#${c.name}`)}</h6>
+				</div>
+			</div>
+		</Link>
+	);
+};

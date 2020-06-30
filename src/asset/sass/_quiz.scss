@@ -1,0 +1,59 @@
+.quiz {
+    width: 80%;
+    display: flex;
+    background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
+    margin: 2rem;
+    align-self: center;
+
+    &,
+    &:visited,
+    &:link {
+        text-decoration: none;
+        color: $color-grey-dark-2;
+
+    }
+
+    &_img {
+        width: 20%;
+        flex: 0 0 30%;
+    }
+
+    &_content,
+    &_categories {
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1;
+    }
+
+    &_categories {
+        padding: 2rem 1rem;
+        flex: 0 0 10%;
+    }
+
+    &_title {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+    }
+
+    &_description {
+        align-self: flex-start;
+        text-align: left;
+        color: $color-grey-dark-1;
+        font-weight: 300;
+    }
+
+    &_category,
+    &_difficulty {
+        font-weight: 300;
+        font-size: 1rem;
+        text-transform: capitalize;
+    }
+
+    &_difficulty {
+        font-size: .8rem;
+        font-weight: 400;
+        border-bottom: 1px solid black;
+    }
+}
