@@ -1,9 +1,21 @@
-.quiz {
-    width: 80%;
+.quizzes {
     display: flex;
-    background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
+    flex-direction: column;
+}
+
+.quiz {
+    width: 60%;
     margin: 2rem;
     align-self: center;
+
+    @media only screen and (max-width:$bp-larger) {
+        width: 80%
+    }
+
+    @media only screen and (max-width:$bp-large) {
+        width: 90%
+    }
+
 
     &,
     &:visited,
@@ -13,12 +25,29 @@
 
     }
 
-    &_img {
-        width: 20%;
-        flex: 0 0 30%;
+    &_content {
+        display: flex;
+        background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
+
+        @media only screen and (max-width:$bp-sm) {
+            flex-direction: column;
+        }
     }
 
-    &_content,
+    &_img {
+        flex: 0 0 30%;
+        display: flex;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+
+    }
+
+    &_details,
     &_categories {
         padding: 2rem 1rem;
         display: flex;
@@ -27,14 +56,25 @@
         flex: 1;
     }
 
+
+
     &_categories {
-        padding: 2rem 1rem;
         flex: 0 0 10%;
+
+        @media only screen and (max-width:$bp-sm) {
+            padding: 1rem;
+        }
     }
 
     &_title {
         text-transform: uppercase;
         font-size: 1.4rem;
+        text-align: left;
+
+        @media only screen and (max-width:$bp-sm) {
+            margin: 1rem 0;
+            align-self: center;
+        }
     }
 
     &_description {
@@ -44,11 +84,11 @@
         font-weight: 300;
     }
 
-    &_category,
-    &_difficulty {
+    &_category {
         font-weight: 300;
         font-size: 1rem;
         text-transform: capitalize;
+
     }
 
     &_difficulty {
