@@ -56,7 +56,7 @@ class App extends React.Component {
 									<Route path="/faq" name="FAQ" component={Faq} />
 									<Route path="/login" name="Login" component={Login} />
 									<Route path="/playquiz" name="PlayQuiz" component={PlayQuiz} />
-									<Route path="/quizzes" name="Quizzez" component={Quizes} />
+									<Route path="/quizzes" name="Quizzes" component={Quizes} />
 								</Switch>
 							</div>
 						</QuizProvider>

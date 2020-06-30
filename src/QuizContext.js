@@ -6,17 +6,37 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 export const QuizContext = createContext();
 
 export const QuizProvider = (props) => {
-	const [ categories, setCategory ] = useState([]);
+	//General App data
+	const [ quizzes, setQuizzes ] = useState({});
+	const [ categories, setCategories ] = useState([]);
+	const [ faq, setFaq ] = useState({});
+
+	//New quiz related data
 	const [ quiz, setQuiz ] = useState({});
+	const [ category, setCategory ] = useState([]);
+
 	const value = useContext(UserContext);
 
+	useEffect(() => {
+		axios.get('https://quizdom-backend.herokuapp.com/api/quiz').then((res) => {
+			setQuizzes(res.data);
+		});
+
+		axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => {
+			setCategories(res.data);
+		});
+
+		axios.get('https://quizdom-backend.herokuapp.com/api/faq').then((res) => {
+			setFaq(res.data);
+		});
+	}, []);
+
 	const postQuiz = (published) => {
-		console.log(value);
 		let quiz_temp = quiz;
 		quiz_temp.creatorId = value.user._id;
 		quiz_temp.published = published;
@@ -46,7 +66,7 @@ export const QuizProvider = (props) => {
 	);
 
 	return (
-		<QuizContext.Provider value={{ quiz, categories, createQuiz, addQuestion, postQuiz }}>
+		<QuizContext.Provider value={{ quizzes, faq, categories, quiz, category, createQuiz, addQuestion, postQuiz }}>
 			{props.children}
 		</QuizContext.Provider>
 	);

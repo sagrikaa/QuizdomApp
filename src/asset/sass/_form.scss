@@ -7,7 +7,7 @@
         max-width: 90%;
         width: 30%;
         margin-top: 10rem;
-        
+
 
         @media only screen and (max-width:$bp-larger) {
             width: 50%;
@@ -44,7 +44,7 @@
         border: none;
         border-radius: 3px;
         height: auto;
-        padding: 1.5rem 2rem;
+        padding: 1rem 1.5rem;
         color: inherit;
 
         // @include respond(tab-port) {
@@ -69,7 +69,7 @@
     &_label {
         font-size: 1.2rem;
         margin-top: .7rem;
-        margin-left: 2rem;
+        margin-left: 1.5rem;
         font-weight: 700;
         display: block;
         transition: all .3s;
