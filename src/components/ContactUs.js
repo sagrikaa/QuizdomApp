@@ -1,8 +1,3 @@
-/**
- * 
- * @author: Sagrika Aggarwal
- */
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -41,7 +36,7 @@ export default function ContactUs(props) {
 
 	return (
 		<div className=" contact">
-			<h3 className="text-center">Drop us a message!</h3>
+			<h3>Drop us a message!</h3>
 			<img className="contact__img" src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
 			<form id="form" onSubmit={handleSubmit} method="POST">
 				<div className="form_group">

@@ -82,9 +82,8 @@
     }
 
     &_radio-group {
-        width: 49%;
-        display: inline-block;
-
+        display: flex;
+        margin: .25rem;
         // @include respond(phone) {
         //     width: 100%;
         //     margin-bottom: 1.5rem;
@@ -93,34 +92,31 @@
 
     &_radio-input {
         opacity: 0;
+        margin: 0;
     }
 
     &_radio-label {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        font-weight: 300;
         cursor: pointer;
-        position: relative;
-        padding-left: 4rem;
+        display: flex;
+        align-items: baseline;
     }
 
     &_radio-button {
-        position: absolute;
-        display: inline;
-        left: 0;
-        top: -.1rem;
-        height: 3rem;
-        width: 3rem;
+        height: 1.4rem;
+        width: 1.4rem;
         border-radius: 50%;
-        border: .5rem solid $color-primary-dark;
+        border: .2rem solid $color-primary-dark;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1rem;
 
         &::after {
             content: "";
-            position: absolute;
-            display: block;
-            height: 1.4rem;
-            width: 1.4rem;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            height: .8rem;
+            width: .8rem;
             border-radius: 50%;
             background-color: $color-primary-dark;
             opacity: 0;

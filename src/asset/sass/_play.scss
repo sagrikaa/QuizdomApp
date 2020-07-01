@@ -1,0 +1,60 @@
+.play {
+
+    &-section {
+        margin: 5rem 2rem;
+        padding: 2rem;
+        background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 50%;
+    }
+
+    &_header {
+        padding: 1rem;
+    }
+
+    &_heading {
+        font-size: 2rem;
+    }
+
+    &_description {
+        color: $color-grey-dark-1;
+        font-weight: 300;
+        font-size: 1.6rem;
+    }
+
+
+    &_questions-list {
+        list-style: none;
+
+        &--item {
+            padding: .75rem 1.25rem;
+            margin-bottom: -1px;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+
+    &_heading {
+        font-size: 1.6rem;
+        font-weight: 500;
+        display: flex;
+
+        span {
+            margin-right: 1rem;
+        }
+    }
+}

@@ -33,6 +33,7 @@ $bp-sm:37.5em; //600px screen
 @import "./asset/sass/form";
 @import "./asset/sass/contact";
 @import "./asset/sass/quiz";
+@import "./asset/sass/play";
 
 *,
 *::before,
@@ -75,9 +76,6 @@ body {
 
 }
 
-
-
-
 .App {
   text-align: center;
   display: flex;
@@ -102,15 +100,6 @@ body {
 
 }
 
-.quizCard {
-  /*  
-  background-image: url(asset/img/tri.jpg); */
-  text-decoration: none;
-  background-repeat: repeat-x;
-  color: darkblue;
-  background-color: #FDEEF4;
-
-}
 
 .quizHeader {
 
@@ -120,9 +109,6 @@ body {
   text-decoration: none;
   background-repeat: repeat;
   color: white;
-
-
-
 
 }
 
@@ -135,18 +121,9 @@ body {
   /* font-style: normal; */
 }
 
-/* 
-.mainPlayQuiz {
-  background-image: url(asset/img/images.jpg);
-  overflow:hidden;
-  min-height: 100%;
-
-} */
 .navbar-toggler-icon {
   background-image: url(asset/img/toggle.png);
 }
-
-
 
 .topnav li {
   float: left;

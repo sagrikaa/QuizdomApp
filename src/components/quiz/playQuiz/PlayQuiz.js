@@ -56,67 +56,64 @@ export default class PlayQuiz extends Component {
 		const { questionset } = quiz;
 
 		return (
-			<div className="card col-md-8 offset-md-2 mt-3 moving-box">
+			<div className="play-section">
 				{/* Header Starts*/}
-				<div className="m-3 quizHeader text-center">
-					<h3 className="m-3">{quiz.name.toUpperCase()}</h3>
-					<p>{quiz.description}</p>
+				<div className="play_header">
+					<h3 className="play_heading">{quiz.name.toUpperCase()}</h3>
+					<p className="play_description">{quiz.description}</p>
 				</div>
 				{/* Header Ends */}
 
-				<div className="card-body">
-					<ul className="list-group list-group-flush">
-						<form>
-							{questionset.map((quest, index) => (
-								<li className="list-group-item" key={index}>
-									<div className="form-group">
-										<Question
-											set={quest}
-											index={index + 1}
-											key={index + 1}
-											getResult={this.state.showAns}
-											addresult={this.addresult}
-											deductresult={this.deductresult}
-											alterResultArray={this.alterResultArray}
-										/>
-
-										{this.state.showAns ? (
-											<div>
-												<label style={{ color: 'blue' }}>Answer: {quest.correctAns}</label>
-											</div>
-										) : null}
-									</div>
-								</li>
-							))}
-
-							<li className="list-group-item">
-								{this.state.showAns ? (
-									<button
-										type="button"
-										id="tryAgain"
-										className="btn btn-block gradientButton"
-										value="Try Again"
-										onClick={() => {
-											this.setState(this.initialState());
-										}}>
-										Try Again
-									</button>
-								) : (
-									// <Link to="/quizzes" className="btn btn-block gradientButton">
-									// 	Try a new Quiz
-									// </Link>
-									<input
-										type="submit"
-										id="getResult"
-										className="btn btn-block gradientButton"
-										value="Get Result"
-										onClick={this.getResult}
+				<ul className="play_questions-list">
+					<form className="form">
+						{/* Rendering each question in quiz */}
+						{questionset.map((quest, index) => (
+							<li className="play_questions-list--item" key={index}>
+								<div className="form_group">
+									<Question
+										set={quest}
+										index={index + 1}
+										key={index + 1}
+										getResult={this.state.showAns}
+										addresult={this.addresult}
+										// deductresult={this.deductresult}
+										alterResultArray={this.alterResultArray}
 									/>
-								)}
+
+									{this.state.showAns && (
+										<div>
+											<label style={{ color: 'blue' }}>Answer: {quest.correctAns}</label>
+										</div>
+									)}
+								</div>
 							</li>
-						</form>
-					</ul>
-				</div>
+						))}
+
+						{this.state.showAns ? (
+							<button
+								type="button"
+								id="tryAgain"
+								className="btn btn-block gradientButton"
+								value="Play Again"
+								onClick={() => {
+									this.setState(this.initialState());
+								}}>
+								Play Again
+							</button>
+						) : (
+							// <Link to="/quizzes" className="btn btn-block gradientButton">
+							// 	Try a new Quiz
+							// </Link>
+							<input
+								type="submit"
+								id="getResult"
+								className="btn btn-block gradientButton"
+								value="Get Result"
+								onClick={this.getResult}
+							/>
+						)}
+					</form>
+				</ul>
 			</div>
 		);
 	}
