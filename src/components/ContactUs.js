@@ -35,8 +35,8 @@ export default function ContactUs(props) {
 	};
 
 	return (
-		<div className=" contact">
-			<h3>Drop us a message!</h3>
+		<div className=" box contact">
+			<h3 className="heading-3">Drop us a message!</h3>
 			<img className="contact__img" src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
 			<form id="form" onSubmit={handleSubmit} method="POST">
 				<div className="form_group">
@@ -91,7 +91,7 @@ export default function ContactUs(props) {
 						Message
 					</label>
 				</div>
-				<button type="submit" className="btn btn-primary">
+				<button type="submit" className="button button-blue">
 					Submit
 				</button>
 			</form>

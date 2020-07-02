@@ -56,10 +56,10 @@ export default class PlayQuiz extends Component {
 		const { questionset } = quiz;
 
 		return (
-			<div className="play-section">
+			<div className="play-section box">
 				{/* Header Starts*/}
 				<div className="play_header">
-					<h3 className="play_heading">{quiz.name.toUpperCase()}</h3>
+					<h3 className="heading-3">{quiz.name.toUpperCase()}</h3>
 					<p className="play_description">{quiz.description}</p>
 				</div>
 				{/* Header Ends */}
@@ -93,7 +93,7 @@ export default class PlayQuiz extends Component {
 							<button
 								type="button"
 								id="tryAgain"
-								className="btn btn-block gradientButton"
+								className="button button-green"
 								value="Play Again"
 								onClick={() => {
 									this.setState(this.initialState());
@@ -107,7 +107,7 @@ export default class PlayQuiz extends Component {
 							<input
 								type="submit"
 								id="getResult"
-								className="btn btn-block gradientButton"
+								className="button button-green"
 								value="Get Result"
 								onClick={this.getResult}
 							/>

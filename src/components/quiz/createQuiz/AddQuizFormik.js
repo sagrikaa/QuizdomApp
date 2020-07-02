@@ -7,7 +7,6 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Field, ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import { QuizContext } from '../../../QuizContext';
 
 const AddQuiz = (props) => {
@@ -17,8 +16,8 @@ const AddQuiz = (props) => {
 	const [ redirect, setRedirect ] = useState(false);
 
 	return (
-		<div className="card mb-3 col-md-6 offset-md-3 mt-3">
-			<h3 className="card-header gradientNav">
+		<div className="box create-quiz-section">
+			<h3 className="heading-3">
 				Add Quiz
 				{/* <i style={{cursor:'pointer',float:'right',color:'red'}} className="fas fa-plus-circle "></i>
      */}
@@ -49,106 +48,108 @@ const AddQuiz = (props) => {
 				})}>
 				{/* Form Inner component starts*/}
 				{({ handleSubmit, errors, values, touched }) => (
-					<div className="card-body">
-						<form onSubmit={handleSubmit}>
-							<div className="form-group">
-								<label htmlFor="name">Name</label>
-
-								<Field
-									type="text"
-									className={touched.name && errors.name ? 'form-control is-invalid' : 'form-control'}
-									name="name"
-									placeholder="What do you want to call this quiz?"
-									disabled={redirect}
-								/>
-								<div className="invalid-feedback">
-									<ErrorMessage name="name" />
-								</div>
+					<form onSubmit={handleSubmit} className="form">
+						<div className="form_group">
+							<Field
+								type="text"
+								className={touched.name && errors.name ? 'form_input form_input-invalid' : 'form_input'}
+								// className="form_input"
+								name="name"
+								placeholder="Quiz Name"
+								disabled={redirect}
+								required
+							/>
+							<label htmlFor="name" className="form_label">
+								Quiz Name
+							</label>
+							{/* form_feedback-invalid */}
+							<div className="form_feedback-invalid">
+								<ErrorMessage name="name" />
 							</div>
+						</div>
 
-							<div className="form-group">
-								<label htmlFor="name">Category</label>
+						<div className="form_group">
+							<Field
+								className={
+									touched.category && errors.category ? 'form_input form_input-invalid' : 'form_input'
+								}
+								component="select"
+								name="category"
+								disabled={redirect}>
+								<option value="">Not Selected</option>
+								{categories.map((c) => (
+									<option key={c._id} value={c._id}>
+										{c.name}
+									</option>
+								))}
+							</Field>
+							<label htmlFor="category" className="form_label">
+								Category
+							</label>
 
-								<Field
-									className={
-										touched.category && errors.category ? 'form-control is-invalid' : 'form-control'
+							<div className="form_feedback-invalid">
+								<ErrorMessage name="category" />
+							</div>
+						</div>
+
+						<div className="form_group">
+							<Field
+								className={
+									errors.difficult && touched.difficult ? (
+										'form_input form_input-invalid'
+									) : (
+										'form_input'
+									)
+								}
+								component="select"
+								name="difficult"
+								disabled={redirect}>
+								<option value="">Not Selected</option>
+								<option value="easy">Easy</option>
+								<option value="medium">Medium</option>
+								<option value="hard">Hard</option>
+							</Field>
+							<label htmlFor="name" className="form_label">
+								Difficult
+							</label>
+							<div className="form_feedback-invalid">
+								<ErrorMessage name="difficult" />
+							</div>
+						</div>
+
+						<div className="form_group">
+							<Field
+								component="textarea"
+								className={errors.description ? 'form_input form_input-invalid' : 'form_input'}
+								name="description"
+								placeholder="Let your quizzers know what they are into!"
+								disabled={redirect}
+								required
+							/>
+							<label htmlFor="name" className="form_label">
+								Description
+							</label>
+							<div className="form_feedback-invalid">
+								<ErrorMessage name="description" />
+							</div>
+						</div>
+
+						{redirect ? (
+							<Link
+								to={{
+									pathname: `/addquestion`,
+									state: {
+										quiz: quiz
 									}
-									component="select"
-									name="category"
-									disabled={redirect}>
-									<option value="">Not Selected</option>
-									{categories.map((c) => (
-										<option key={c._id} value={c._id}>
-											{c.name}
-										</option>
-									))}
-								</Field>
-								<div className="invalid-feedback">
-									<ErrorMessage name="category" />
-								</div>
-							</div>
-
-							<div className="form-group">
-								<label htmlFor="name">Difficult</label>
-								<Field
-									className={
-										errors.difficult && touched.difficult ? (
-											'form-control is-invalid'
-										) : (
-											'form-control'
-										)
-									}
-									component="select"
-									name="difficult"
-									disabled={redirect}>
-									<option value="">Not Selected</option>
-									<option value="easy">Easy</option>
-									<option value="medium">Medium</option>
-									<option value="hard">Hard</option>
-								</Field>
-								<div className="invalid-feedback">
-									<ErrorMessage name="difficult" />
-								</div>
-							</div>
-
-							<div className="form-group">
-								<label htmlFor="name">Description</label>
-								<Field
-									component="textarea"
-									className={errors.description ? 'form-control is-invalid' : 'form-control'}
-									name="description"
-									placeholder="Let your quizzers know what they are into!"
-									disabled={redirect}
-								/>
-							</div>
-
-							{redirect ? (
-								<Link
-									to={{
-										pathname: `/addquestion`,
-										state: {
-											quiz: quiz
-										}
-									}}
-									className="btn btn-block gradientButton"
-									style={{ color: 'white' }}>
-									Add Question
-									<i
-										style={{ cursor: 'pointer', color: 'white' }}
-										className="fas fa-arrow-right ml-3 "
-									/>
-								</Link>
-							) : (
-								<input
-									type="submit"
-									id="addQuiz"
-									className="btn btn-block gradientButton"
-									value="Create Quiz"
-									style={{ color: 'white' }}
-								/>
-							)}
-						</form>
-					</div>
+								}}
+								className="button button-green">
+								Add Question
+								<i className="fas fa-arrow-right ml-3 " />
+							</Link>
+						) : (
+							<input type="submit" id="addQuiz" className="button button-blue" value="Create Quiz" />
+						)}
+					</form>
 				)}
 				{/* Form Inner component ends*/}
 			</Formik>

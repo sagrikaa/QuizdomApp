@@ -120,107 +120,87 @@ const AddQuestion = (props) => {
 	});
 
 	return (
-		<div className="row">
-			<div className="col">
-				<div className="card">
-					<h3 className="card-header gradientNav">Add Question</h3>
-					<div className="card-body">
-						<form onSubmit={handleSubmit}>
-							<div className="form-group">
-								<label htmlFor="name">Question</label>
-								<Field
-									className={
-										errors.question && touched.correctAns ? (
-											'form-control is-invalid'
-										) : (
-											'form-control'
-										)
-									}
-									name="question"
-									placeholder="Question"
-								/>
-								<div className="invalid-feedback">
-									<ErrorMessage name="question" />
-								</div>
-							</div>
+		<div className="create-question-section">
+			<div className="box create-question">
+				<h3 className="heading-3">Add Question</h3>
+				<form onSubmit={handleSubmit} className="form">
+					<div className="form_group">
+						<Field
+							className={
+								errors.question && touched.question ? 'form_input form_input-invalid' : 'form_input'
+							}
+							name="question"
+							placeholder="Question"
+						/>
+						<label htmlFor="question" className="form_label">
+							Question
+						</label>
 
-							<div className="form-group">
-								<label htmlFor="name">Options</label>
+						<div className="form_feedback-invalid">
+							<ErrorMessage name="question" />
+						</div>
+					</div>
 
-								<div className="row">
-									<div className="col-md-6">
-										<Field
-											type="text"
-											className={optionError ? 'form-control is-invalid' : 'form-control'}
-											name="option"
-											placeholder="Option.."
-										/>
-
-										<i
-											style={{ cursor: 'pointer', color: 'black' }}
-											className="fas fa-plus-circle col-md-1 mt-3"
-											onClick={addOption}
-										/>
-
-										{optionError ? (
-											<div className="invalid-feedback" style={{ float: 'right' }}>
-												<ErrorMessage name="option" />
-											</div>
-										) : null}
-									</div>
-									{/* Display entered options */}
-									<Options options={options} />
-								</div>
-							</div>
-
-							{/* Retrieving dropdown options from options entered above */}
-							<div className="form-group">
-								<label htmlFor="name">Correct Answer</label>
-								<Field
-									className={
-										errors.correctAns && touched.correctAns ? (
-											'form-control is-invalid'
-										) : (
-											'form-control'
-										)
-									}
-									name="correctAns"
-									component="select">
-									<option value="">Not Selected</option>
-									{options.map((o) => (
-										<option key={o} value={o}>
-											{o}
-										</option>
-									))}
-								</Field>
-								<div className="invalid-feedback">
-									<ErrorMessage name="correctAns" />
-								</div>
-							</div>
-
-							<input type="submit" className="btn btn-block gradientButton" value="Add Question" />
-							<input
-								type="button"
-								className="btn btn-block gradientButton"
-								value="Save"
-								onClick={() => postQuiz(false)}
+					<div className="options-section">
+						<div className="form_group">
+							<Field
+								type="text"
+								className={optionError ? 'form_input form_input-invalid' : 'form_input'}
+								name="option"
+								placeholder="Option.."
+							/>
+							<label htmlFor="option" className="form_label">
+								Options
+							</label>
+							<i
+								style={{ cursor: 'pointer', color: 'black' }}
+								className="fas fa-plus-circle col-md-1 mt-3"
+								onClick={addOption}
 							/>
 
-							{/* <input
-				type="button"
-				className="btn btn-block gradientButton"
-				value="Save and Publish"
-				onClick={SaveQuiz(true)}
-			/> */}
-						</form>
+							{optionError ? (
+								<div className="form_feedback-invalid" style={{ float: 'right' }}>
+									<ErrorMessage name="option" />
+								</div>
+							) : null}
+						</div>
+
+						{/* Display entered options */}
+						<Options options={options} />
 					</div>
-				</div>
+
+					{/* Retrieving dropdown options from options entered above */}
+					<div className="form_group">
+						<Field
+							className={
+								errors.correctAns && touched.correctAns ? 'form_input form_input-invalid' : 'form_input'
+							}
+							name="correctAns"
+							component="select">
+							<option value="">Not Selected</option>
+							{options.map((option, index) => (
+								<option key={`${index}-${option}`} value={option}>
+									{option}
+								</option>
+							))}
+						</Field>
+						<label htmlFor="correctAns" className="form_label">
+							Correct Answer
+						</label>
+						<div className="form_feedback-invalid">
+							<ErrorMessage name="correctAns" />
+						</div>
+					</div>
+
+					<input type="submit" className="button button-blue" value="Add Question" />
+					<button type="button" className="button button-green" value="Save" onClick={() => postQuiz(false)}>
+						Save
+					</button>
+				</form>
 			</div>
 
-			<div className="col">
-				<div className="card showQuestion">
-					<PreviewQuestions />
-				</div>
+			<div className="box preview-question">
+				<PreviewQuestions />
 			</div>
 		</div>
 	);

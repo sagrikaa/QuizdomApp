@@ -68,8 +68,8 @@
 
     &_title {
         text-transform: uppercase;
-        font-size: 1.4rem;
-        text-align: left;
+        font-size: 2rem;
+        margin-bottom: 2rem;
 
         @media only screen and (max-width:$bp-sm) {
             margin: 1rem 0;
@@ -82,18 +82,19 @@
         text-align: left;
         color: $color-grey-dark-1;
         font-weight: 300;
+        margin-bottom: 2rem;
     }
 
     &_category {
         font-weight: 300;
-        font-size: 1rem;
+        font-size: 1.4rem;
         text-transform: capitalize;
-
+        align-self: flex-end;
     }
 
     &_difficulty {
-        font-size: .8rem;
-        font-weight: 400;
+        font-size: 1.4rem;
+        font-weight: 300;
         border-bottom: 1px solid black;
     }
 }

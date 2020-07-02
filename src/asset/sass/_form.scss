@@ -1,27 +1,26 @@
 .form {
-    align-self: center;
 
-    &-login {
-        background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
-        padding: 2rem;
-        max-width: 90%;
-        width: 30%;
-        margin-top: 10rem;
+    // &-login {
+    //     background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
+    //     padding: 2rem;
+    //     max-width: 90%;
+    //     width: 30%;
+    //     margin-top: 10rem;
 
 
-        @media only screen and (max-width:$bp-larger) {
-            width: 50%;
-        }
+    //     @media only screen and (max-width:$bp-larger) {
+    //         width: 50%;
+    //     }
 
-        @media only screen and (max-width:$bp-large) {
-            width: 60%;
-        }
+    //     @media only screen and (max-width:$bp-large) {
+    //         width: 60%;
+    //     }
 
-        @media only screen and (max-width:$bp-sm) {
-            width: 100%;
-        }
+    //     @media only screen and (max-width:$bp-sm) {
+    //         width: 100%;
+    //     }
 
-    }
+    // }
 
 
     &_group {
@@ -36,7 +35,7 @@
     }
 
     &_input {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font: inherit;
         width: 100%;
         display: block;
@@ -54,6 +53,10 @@
         &::-webkit-input-placeholder {
             color: #999;
         }
+
+        &-invalid {
+            border-bottom: 3px solid $color-error;
+        }
     }
 
     &_input:focus {
@@ -63,11 +66,28 @@
 
         &:invalid {
             border-bottom: 3px solid $color-error;
+
+
         }
     }
 
+    &_feedback {
+        &-invalid {
+            // width: 100%;
+            // margin-top: .25rem;
+            font-size: 1.2rem;
+            color: #dc3545;
+            display: none;
+            align-self: flex-start;
+
+        }
+    }
+
+    &_input-invalid~&_feedback-invalid {
+        display: block;
+    }
+
     &_label {
-        font-size: 1.2rem;
         margin-top: .7rem;
         margin-left: 1.5rem;
         font-weight: 700;
@@ -96,7 +116,7 @@
     }
 
     &_radio-label {
-        font-size: 1.6rem;
+        // font-size: 1.6rem;
         font-weight: 300;
         cursor: pointer;
         display: flex;
@@ -104,8 +124,8 @@
     }
 
     &_radio-button {
-        height: 1.4rem;
-        width: 1.4rem;
+        height: 1.6rem;
+        width: 1.6rem;
         border-radius: 50%;
         border: .2rem solid $color-primary-dark;
         display: flex;

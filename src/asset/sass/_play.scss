@@ -1,26 +1,28 @@
 .play {
 
-    &-section {
-        margin: 5rem 2rem;
-        padding: 2rem;
-        background-image: linear-gradient(rgba($color-white, .8), rgba($color-white, .8));
-        display: flex;
-        flex-direction: column;
-        flex: 0 0 50%;
+    div &-section {
+
+        width: 60%;
+
+        @media only screen and (max-width:$bp-larger) {
+            width: 70%;
+        }
+
+        @media only screen and (max-width:$bp-large) {
+            width: 90%;
+        }
+
+
     }
 
     &_header {
         padding: 1rem;
     }
 
-    &_heading {
-        font-size: 2rem;
-    }
-
     &_description {
         color: $color-grey-dark-1;
         font-weight: 300;
-        font-size: 1.6rem;
+        font-size: 2rem;
     }
 
 
@@ -47,14 +49,31 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+    padding: 2rem;
 
     &_heading {
         font-size: 1.6rem;
         font-weight: 500;
         display: flex;
+        align-items: baseline;
 
         span {
             margin-right: 1rem;
         }
     }
+}
+
+.tick,
+.cross {
+    cursor: pointer;
+    padding-right: 1rem;
+    font-size: 2rem;
+}
+
+.tick {
+    color: #90D5EC;
+}
+
+.cross {
+    color: $color-error;
 }

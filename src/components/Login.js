@@ -42,7 +42,8 @@ class Login extends Component {
 		if (this.context.user) return <Redirect to={from} />;
 
 		return (
-			<form className="form form-login">
+			<form className="box form">
+				<h3 className="heading-3">Quizdom</h3>
 				<div className="form_group">
 					<input
 						type="email"
@@ -77,12 +78,18 @@ class Login extends Component {
 						Password
 					</label>
 				</div>
-				<button type="submit" onClick={this.login} className="btn btn-primary">
-					Login
-				</button>
-				<button onClick={this.signup} style={{ marginLeft: '25px' }} className="btn btn-success">
-					Signup
-				</button>
+				<div className="horizontal-div">
+					<button type="submit" onClick={this.login} className="button button-blue">
+						Login
+					</button>
+					<button onClick={this.signup} className="button button-green">
+						Signup
+					</button>
+				</div>
+
+				<small className="form-text text-muted">
+					New members just enter username and password & press sign-up to create new account.
+				</small>
 			</form>
 		);
 	}

@@ -6,9 +6,9 @@ import React, { Component } from 'react';
 
 const TickCross = (props) => {
 	if (props.selectedOption.trim() === props.correctAns.trim()) {
-		return <i className="fas fa-check tick" style={{ cursor: 'pointer', float: 'left', color: '#90D5EC' }} />;
+		return <i className="tick fas fa-check " />;
 	} else {
-		return <i className="fas fa-times" style={{ cursor: 'pointer', float: 'left', color: 'red' }} />;
+		return <i className="cross fas fa-times " />;
 	}
 };
 
@@ -29,35 +29,6 @@ export default class Question extends Component {
 		const { set, index, getResult } = this.props;
 		const { question, options, _id, correctAns } = set;
 		return (
-			// <div className="question">
-			// 	<label htmlFor="question">
-			// 		{/* renders a tick/cross for each right wrong answer */}
-			// 		{getResult && (
-			// 			<TickCross
-			// 				correctAns={correctAns}
-			// 				selectedOption={this.state.selectedOption}
-			// 				getResult={getResult}
-			// 			/>
-			// 		)}
-			// 		<span>{index}. </span> {question}
-			// 	</label>
-			// 	{options.map((option, i) => {
-			// 		return (
-			// 			<div className="radio" key={i}>
-			// 				<label>
-			// 					<input
-			// 						type="radio"
-			// 						name={_id}
-			// 						value={option}
-			// 						checked={this.state.selectedOption === option}
-			// 						onChange={this.handleChange}
-			// 					/>
-			// 					{option}
-			// 				</label>
-			// 			</div>
-			// 		);
-			// 	})}
-			// </div>
 			<div className="question">
 				<h5 className="question_heading">
 					{/* renders a tick/cross for each right wrong answer */}
@@ -95,19 +66,3 @@ export default class Question extends Component {
 		);
 	}
 }
-
-// //returns a tick or cross for each right/wrong answer
-// renderTickCross = (correctAns) => {
-// 	if (this.props.getResult) {
-// 		if (this.state.selectedOption.trim() === correctAns.trim()) {
-// 			return <i className="fas fa-check" style={{ cursor: 'pointer', float: 'left', color: '#90D5EC' }} />;
-// 		} else {
-// 			return <i className="fas fa-times" style={{ cursor: 'pointer', float: 'left', color: 'red' }} />;
-// 		}
-// 	}
-// 	return null;
-// };
-
-// onChange={() => {
-// 	this.setState({ selectedOption: option, selectedOptionId: i });
-// }}
