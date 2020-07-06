@@ -22,6 +22,7 @@ export const QuizProvider = (props) => {
 
 	const value = useContext(UserContext);
 
+	//Publish Quiz
 	const postQuiz = (published) => {
 		let quiz_temp = quiz;
 		quiz_temp.creatorId = value.user._id;
@@ -31,10 +32,13 @@ export const QuizProvider = (props) => {
 			alert('Success!!');
 		});
 	};
+
+	//Create a quiz
 	const createQuiz = (name, category, difficult, description, questionset) => {
 		setQuiz({ name, category, difficult, description, questionset });
 	};
 
+	//Add question to a quiz
 	const addQuestion = (set) => {
 		if (quiz.questionset) {
 			let quiz_temp = quiz;
@@ -47,15 +51,19 @@ export const QuizProvider = (props) => {
 
 	useEffect(
 		() => {
+			//Get existing catgories from the api
 			axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => setCategory(res.data));
 
+			//get all quizzes from the api
 			axios.get('https://quizdom-backend.herokuapp.com/api/quiz').then((res) => {
 				setQuizzes(res.data);
 			});
+
 			axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => {
 				setCategories(res.data);
 			});
 
+			//get all the faq from the api
 			axios.get('https://quizdom-backend.herokuapp.com/api/faq').then((res) => {
 				setFaq(res.data);
 			});

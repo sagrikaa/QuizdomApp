@@ -245,7 +245,7 @@ const AddQuestion = (props) => {
 				</form>
 			</div>
 
-			<PreviewQuiz isOpen={previewQuiz} setIsOpen={setPreviewQuiz} />
+			{/* <PreviewQuiz isOpen={previewQuiz} setIsOpen={setPreviewQuiz} /> */}
 		</div>
 	);
 };
