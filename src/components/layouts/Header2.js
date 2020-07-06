@@ -27,7 +27,18 @@ export default class Header extends Component {
 
 	render() {
 		return (
+			<>
+			<style type="text/css">
+				{	`.navbar-brand 
+					{
+							font-size:1.8rem;
+							font-weight:300;
+    			}`
+				}
+				</style>
+
 			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+				
 				<Navbar.Brand href="#home">Quizdom</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
@@ -68,7 +79,7 @@ export default class Header extends Component {
 						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
-			</Navbar>
+			</Navbar></>
 		);
 	}
 }

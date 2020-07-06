@@ -55,7 +55,7 @@ export default class Question extends Component {
 								className="form_radio-input"
 							/>
 							<label htmlFor={option} className="form_radio-label">
-								<span class="form_radio-button" />
+								<span className="form_radio-button" />
 
 								{option}
 							</label>

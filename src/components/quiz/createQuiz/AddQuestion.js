@@ -7,10 +7,39 @@ import React, { useState, useEffect, useContext } from 'react';
 // import { Redirect, Link } from 'react-router-dom';
 import { Field, ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
-import PreviewQuestions from './PreviewQuestions';
+import PreviewQuiz from './PreviewQuiz';
 import { QuizContext } from '../../../QuizContext';
 import { UserContext } from '../../../UserContext';
+
+const Options = ({ options, deleteOption }) => {
+	const [ showOptions, setShowOptions ] = useState(false);
+
+	return (
+		<div className="options">
+			<button className="button button-yellow" onClick={() => setShowOptions(!showOptions)}>
+				Show Options
+			</button>
+			{showOptions &&
+			options.length > 0 && (
+				<ul id="options_list" className="options_list animate__animated animate__fadeInDown">
+					{options.map((option, index) => (
+						<li className="options_list-item" key={option + index}>
+							<span className="bullet-green" />
+							<p>{option}</p>
+							<i
+								className="cross fas fa-times icon"
+								onClick={() => {
+									console.log('no');
+									deleteOption(index);
+								}}
+							/>
+						</li>
+					))}
+				</ul>
+			)}
+		</div>
+	);
+};
 
 const OutterComponent = (props) => {
 	const value = useContext(QuizContext);
@@ -70,14 +99,10 @@ const OutterComponent = (props) => {
 		</Formik>
 	);
 };
-const Options = (props) => (
-	<label htmlFor="optionList" className="col-md-6">
-		<ul id="myOptions">{props.options.map((o) => <li key={o}>{o}</li>)}</ul>
-	</label>
-);
 const AddQuestion = (props) => {
 	const [ options, setOptions ] = useState([]);
 	const [ optionError, setOptionError ] = useState(false);
+	const [ previewQuiz, setPreviewQuiz ] = useState(false);
 	const { errors, handleSubmit, values, status, touched } = props;
 	const { quiz, postQuiz } = useContext(QuizContext);
 	const addOption = () => {
@@ -88,6 +113,12 @@ const AddQuestion = (props) => {
 		} else {
 			setOptionError(true);
 		}
+	};
+
+	const deleteOption = (index) => {
+		const newOptions = [ ...options ];
+		newOptions.splice(index, 1);
+		setOptions(newOptions);
 	};
 
 	const resetForm = (reset) => {
@@ -131,6 +162,7 @@ const AddQuestion = (props) => {
 							}
 							name="question"
 							placeholder="Question"
+							component="textarea"
 						/>
 						<label htmlFor="question" className="form_label">
 							Question
@@ -141,32 +173,33 @@ const AddQuestion = (props) => {
 						</div>
 					</div>
 
-					<div className="options-section">
-						<div className="form_group">
+					<div className="form_group">
+						<div className="horizontal-div">
 							<Field
-								type="text"
+								component="textarea"
 								className={optionError ? 'form_input form_input-invalid' : 'form_input'}
 								name="option"
-								placeholder="Option.."
+								placeholder="Option"
 							/>
-							<label htmlFor="option" className="form_label">
-								Options
-							</label>
-							<i
-								style={{ cursor: 'pointer', color: 'black' }}
-								className="fas fa-plus-circle col-md-1 mt-3"
-								onClick={addOption}
-							/>
+							<i className="fas fa-plus-circle icon " onClick={addOption} />
 
-							{optionError ? (
-								<div className="form_feedback-invalid" style={{ float: 'right' }}>
+							{/* Display entered options */}
+							<Options options={options} deleteOption={deleteOption} />
+						</div>
+						<label htmlFor="option" className="form_label">
+							Option
+						</label>
+						{/* {optionError && (
+								<div className="form_feedback-invalid">
 									<ErrorMessage name="option" />
 								</div>
-							) : null}
+							)} */}
+						<div className="form_feedback-invalid">
+							<ErrorMessage name="option" />
 						</div>
-
-						{/* Display entered options */}
-						<Options options={options} />
+						<small className="form-text text-muted" style={{ alignSelf: 'flex-start' }}>
+							Add options one at a time.{' '}
+						</small>{' '}
 					</div>
 
 					{/* Retrieving dropdown options from options entered above */}
@@ -179,7 +212,7 @@ const AddQuestion = (props) => {
 							component="select">
 							<option value="">Not Selected</option>
 							{options.map((option, index) => (
-								<option key={`${index}-${option}`} value={option}>
+								<option key={option + index} value={option}>
 									{option}
 								</option>
 							))}
@@ -191,17 +224,28 @@ const AddQuestion = (props) => {
 							<ErrorMessage name="correctAns" />
 						</div>
 					</div>
-
-					<input type="submit" className="button button-blue" value="Add Question" />
-					<button type="button" className="button button-green" value="Save" onClick={() => postQuiz(false)}>
-						Save
-					</button>
+					<div className="horizontal-div">
+						<input type="submit" className="button button-blue" value="Add Question" />
+						<button
+							type="button"
+							className="button button-green"
+							value="Save"
+							onClick={() => postQuiz(false)}>
+							{' '}
+							Save
+						</button>
+						<button
+							type="button"
+							className="button button-yellow"
+							value="Preview"
+							onClick={() => setPreviewQuiz(!previewQuiz)}>
+							Preview
+						</button>
+					</div>
 				</form>
 			</div>
 
-			<div className="box preview-question">
-				<PreviewQuestions />
-			</div>
+			<PreviewQuiz isOpen={previewQuiz} setIsOpen={setPreviewQuiz} />
 		</div>
 	);
 };
