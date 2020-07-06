@@ -14,7 +14,7 @@ export const QuizProvider = (props) => {
 	//General App data
 	const [ quizzes, setQuizzes ] = useState([]);
 	const [ categories, setCategories ] = useState([]);
-	const [ faq, setFaq ] = useState([]);
+	const [ faqs, setFaqs ] = useState([]);
 
 	//New quiz related data
 	const [ quiz, setQuiz ] = useState({});
@@ -65,7 +65,7 @@ export const QuizProvider = (props) => {
 
 			//get all the faq from the api
 			axios.get('https://quizdom-backend.herokuapp.com/api/faq').then((res) => {
-				setFaq(res.data);
+				setFaqs(res.data);
 			});
 		},
 		[ quiz ]
@@ -73,7 +73,7 @@ export const QuizProvider = (props) => {
 
 	// useEffect(() => {}, [ quiz ]);
 	return (
-		<QuizContext.Provider value={{ quizzes, faq, categories, quiz, category, createQuiz, addQuestion, postQuiz }}>
+		<QuizContext.Provider value={{ quizzes, faqs, categories, quiz, category, createQuiz, addQuestion, postQuiz }}>
 			{props.children}
 		</QuizContext.Provider>
 	);

@@ -3,75 +3,35 @@
  * @author: Joshua Dias.
  */
 
-import React, { Component, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Consumer } from '../context';
+import React, { useContext, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import { QuizContext } from '../QuizContext';
 
 const Faq = (props) => {
 	const [ visible, setVisible ] = useState(false);
 	const { question, answer } = props;
 	return (
-		<li className="list-group-item mb-3">
-			<div className="mb-3">
-				<h6>
-					{question}
-					<i
-						className=" ml-2 fas fa-caret-down"
-						style={{ cursor: 'pointer' }}
-						onClick={() => setVisible(!visible)}
-					/>
-				</h6>
-			</div>
-			{visible ? <div className="faq-ans">{answer}</div> : null}
+		<li className="list-faq_item">
+			<h5 className="list-faq_item--question heading-md" onClick={() => setVisible(!visible)}>
+				{question}
+				{visible ? <i className="fas fa-caret-up icon" /> : <i className="fas fa-caret-down icon" />}
+			</h5>
+			{visible && (
+				<p className=" list-faq_item--answer faq-ans animate__animated animate__fadeInDown">{answer}</p>
+			)}
 		</li>
 	);
 };
-export default class Faqs extends Component {
-	state = {
-		showItemDetails: false
-	};
-
-	render() {
-		// const { showItemDetails } = this.state;
-		return (
-			<Consumer>
-				{(value) => {
-					const { dispatch } = value;
-					const { faqs } = value;
-					return (
-						<Card body className="col-8 offset-2 mt-3">
-							{/* {faqs.map((faq) => (
-								<div className="card card-body mb-3">
-									<h4>
-										{faq.question}
-										<i
-											className="fas fa-caret-down"
-											style={{ cursor: 'pointer' }}
-											onClick={() =>
-												this.setState({
-													showItemDetails: !this.state.showItemDetails
-												})}
-										/>
-									</h4>
-									{showItemDetails ? (
-										<ul className="list-group">
-											<li className="list-group-item">Answer: {faq.answer}</li>
-										</ul>
-									) : null}
-								</div>
-							))} */}
-							{faqs.map((faq) => <Faq question={faq.question} answer={faq.answer} />)}
-						</Card>
-					);
-				}}
-			</Consumer>
-		);
-	}
-}
-
-Faq.propTypes = {
-	// name:PropTypes.string.isRequired,
-	faq: PropTypes.object.isRequired,
-	answer: PropTypes.string.isRequired
+const Faqs = (props) => {
+	const [ showItemDetails, setShowItemDetails ] = useState(false);
+	const value = useContext(QuizContext);
+	const { faqs } = value;
+	return (
+		<div className="box faq-box">
+			<h3 className="heading-lg">Frequently Asked Questions</h3>
+			<ul className="list-faq">{faqs.map((faq) => <Faq question={faq.question} answer={faq.answer} />)}</ul>
+		</div>
+	);
 };
+
+export default Faqs;
