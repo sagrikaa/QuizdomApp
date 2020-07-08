@@ -48,17 +48,22 @@
     }
 
     &_details,
-    &_categories {
+    &_metadata {
         padding: 2rem 1rem;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        justify-content: space-between;
         flex: 1;
+
+        @media only screen and (max-width:$bp-sm) {
+            align-items: center;
+        }
     }
 
 
 
-    &_categories {
+    &_metadata {
         flex: 0 0 10%;
 
         @media only screen and (max-width:$bp-sm) {
@@ -85,12 +90,14 @@
         margin-bottom: 2rem;
     }
 
-    &_category {
+    &_category,
+    &_date {
         font-weight: 300;
         font-size: 1.4rem;
         text-transform: capitalize;
         align-self: flex-end;
     }
+
 
     &_difficulty {
         font-size: 1.4rem;

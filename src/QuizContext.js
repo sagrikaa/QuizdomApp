@@ -6,7 +6,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
-// import { Redirect } from 'react-router-dom';
 
 export const QuizContext = createContext();
 
@@ -17,17 +16,16 @@ export const QuizProvider = (props) => {
 	const [ faqs, setFaqs ] = useState([]);
 
 	//New quiz related data
-	const [ quiz, setQuiz ] = useState({});
+	const [ quizDraft, setQuizDraft ] = useState({});
 	const [ category, setCategory ] = useState([]);
 
 	const value = useContext(UserContext);
 
 	//Publish Quiz
 	const postQuiz = (published) => {
-		let quiz_temp = quiz;
-		quiz_temp.creatorId = value.user._id;
-		quiz_temp.published = published;
-		axios.post('https://quizdom-backend.herokuapp.com/api/quiz', quiz_temp).then((res) => {
+		let unsavedQuiz = { ...quizDraft };
+		unsavedQuiz.published = published;
+		axios.post('https://quizdom-backend.herokuapp.com/api/quiz', unsavedQuiz).then((res) => {
 			console.log(res.data);
 			alert('Success!!');
 		});
@@ -35,20 +33,40 @@ export const QuizProvider = (props) => {
 
 	//Create a quiz
 	const createQuiz = (name, category, difficult, description, questionset) => {
-		setQuiz({ name, category, difficult, description, questionset });
+		const unsavedQuiz = {
+			name,
+			category,
+			difficult,
+			description,
+			questionset,
+			creatorId: value.user._id
+		};
+		setQuizDraft(unsavedQuiz);
 	};
 
 	//Add question to a quiz
 	const addQuestion = (set) => {
-		if (quiz.questionset) {
-			let quiz_temp = quiz;
+		if (Object.entries(quizDraft).length > 0) {
+			let quiz_temp = { ...quizDraft };
 			quiz_temp.questionset.push(set);
-			setQuiz(quiz_temp);
+			setQuizDraft(quiz_temp);
 		} else {
 			alert('No Quiz selected! Please go back to create quiz!');
 		}
 	};
 
+	useEffect(
+		() => {
+			if (Object.entries(quizDraft).length > 0) {
+				// When you want to more than one drafts
+				// let unsavedQuizzes = JSON.parse(localStorage.getItem('unsavedQuizzes')) || [];
+				// unsavedQuizzes = [ ...unsavedQuizzes, quizDraft ];
+				// localStorage.setItem('unsavedQuizzes', JSON.stringify(unsavedQuizzes));
+				localStorage.setItem('unsavedQuiz', JSON.stringify(quizDraft));
+			}
+		},
+		[ quizDraft ]
+	);
 	useEffect(
 		() => {
 			//Get existing catgories from the api
@@ -68,12 +86,13 @@ export const QuizProvider = (props) => {
 				setFaqs(res.data);
 			});
 		},
-		[ quiz ]
+		[ quizDraft ]
 	);
 
 	// useEffect(() => {}, [ quiz ]);
 	return (
-		<QuizContext.Provider value={{ quizzes, faqs, categories, quiz, category, createQuiz, addQuestion, postQuiz }}>
+		<QuizContext.Provider
+			value={{ quizzes, faqs, categories, quizDraft, category, createQuiz, addQuestion, postQuiz }}>
 			{props.children}
 		</QuizContext.Provider>
 	);

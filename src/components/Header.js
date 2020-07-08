@@ -1,37 +1,24 @@
-import React, { Component } from 'react';
+import React,{useContext} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { UserContext } from '../../UserContext';
+import {UserContext} from '../UserContext'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-export default class Header extends Component {
-	constructor(props) {
-		super(props);
-		this.logout = this.logout.bind(this);
-	}
+const Header=(props)=> {
+	const value = useContext(UserContext);
 
-	state = {
-		toggle: false
-	};
-
-	logout() {
-		this.context.logout();
-		this.setState({ redirected: true });
+	const handleLogout=()=> {
+		value.logout();
 		alert('You have successfully Logged out!!');
+		// return <Redirect to="/login" />
 	}
 
-	toggleMenu = () => {
-		this.setState({ toggle: !this.state.toggle });
-		console.log(this.state.toggle);
-	};
-
-	render() {
 		return (
 			<>
 			<style type="text/css">
 				{	`.navbar-brand 
 					{
-							font-size:1.8rem;
+							font-size:2rem;
 							font-weight:300;
     			}`
 				}
@@ -64,17 +51,14 @@ export default class Header extends Component {
 							</Link>
 						</Nav.Link>
 						<Nav.Link>
-							{this.context.user ? (
-								<button className="btn navbar-brand" onClick={this.logout}>
+							{value.user ? (
+								<button className="btn navbar-brand" onClick={handleLogout}>
 									Log Out
 								</button>
 							) : (
-								<span>
 									<Link to="/login" className="navbar-brand">
 										Login
 									</Link>
-									<Redirect to="/login" />
-								</span>
 							)}
 						</Nav.Link>
 					</Nav>
@@ -82,5 +66,6 @@ export default class Header extends Component {
 			</Navbar></>
 		);
 	}
-}
-Header.contextType = UserContext;
+
+
+export default Header;

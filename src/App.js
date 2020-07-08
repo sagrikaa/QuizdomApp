@@ -20,7 +20,7 @@ import AddQuizFormik from './components/quiz/createQuiz/AddQuizFormik';
 import ContactUs from './components/ContactUs';
 import Faq from './components/Faq';
 // import Header from './components/layouts/Header';
-import Header2 from './components/layouts/Header2';
+import Header from './components/Header';
 
 import Login from './components/Login';
 import PlayQuiz from './components/quiz/playQuiz/PlayQuiz';
@@ -46,7 +46,7 @@ class App extends React.Component {
 						<QuizProvider>
 							<div className="App">
 								{/* <Header branding="Quizdom" /> */}
-								<Header2 branding="Quizdom" />
+								<Header branding="Quizdom" />
 								<Switch>
 									<Route exact path="/" name="Quizzes" component={Quizzes} />
 									<PrivateRoute path="/addquiz" name="AddQuiz" component={AddQuizFormik} />

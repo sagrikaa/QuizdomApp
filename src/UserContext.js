@@ -10,12 +10,14 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
 	const [ user, setUser ] = useState();
-	const [ token, setToken ] = useState('');
+	const [ token, setToken ] = useState(sessionStorage.getItem('auth-token') || '');
 
 	useEffect(
 		() => {
-			setToken(sessionStorage.getItem('auth-token'));
-			if (token) setGlobalUser(sessionStorage.getItem('auth-token'));
+			if (token) sessionStorage.setItem('auth-token', token);
+			else sessionStorage.removeItem('auth-token');
+
+			setGlobalUser(token);
 		},
 		[ token ]
 	);
@@ -29,17 +31,18 @@ export const UserProvider = (props) => {
 			})
 			.then((res) => {
 				//Setting token for the whole session
-				sessionStorage.setItem('auth-token', res.data.token);
-				setGlobalUser(res.data.token);
-				alert(`Sign Up Successful with token`);
+				setToken(res.data.token);
+				alert(`Sign Up Successful!`);
 			})
 			.catch((error) => {
 				console.log(error);
 				alert('Sign Up Failed');
 			});
 	};
-	//working properly
+
+	//Stores token in session storage
 	const login = (email, password) => {
+		// If login id and password is correct, request a token
 		axios
 			.post('https://quizdom-backend.herokuapp.com/api/auth', {
 				email,
@@ -47,40 +50,40 @@ export const UserProvider = (props) => {
 			})
 			.then((res) => {
 				//Setting token for the whole session
-				sessionStorage.setItem('auth-token', res.data.token);
-				setGlobalUser(sessionStorage.getItem('auth-token'));
-				alert(`Login Successful with token`);
+				const auth_token = res.data.token;
+				setToken(auth_token);
+				alert(`Successfully logged in!`);
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Login Failed with token');
+				alert('Wrong UserName or Password!');
 			});
 	};
 
 	const logout = () => {
-		sessionStorage.removeItem('auth-token');
-		setUser(null);
+		setToken(null);
+		// setUser(null);
 	};
 
-	async function setGlobalUser(token) {
-		const headers = {
-			'Content-Type': 'application/json; charset=utf-8',
-			'x-auth-token': token
-		};
-		await axios
-			.get('https://quizdom-backend.herokuapp.com/api/auth', { headers })
-			.then((res) => {
-				setUser(res.data);
-			})
-			.catch((error) => {
-				console.log(error);
-				alert('Login Failed');
-			});
+	function setGlobalUser(token) {
+		if (token) {
+			const headers = {
+				'Content-Type': 'application/json; charset=utf-8',
+				'x-auth-token': token
+			};
+			axios
+				.get('https://quizdom-backend.herokuapp.com/api/auth', { headers })
+				.then((res) => {
+					setUser(res.data);
+				})
+				.catch((error) => {
+					console.log(error);
+					alert('Login Failed');
+				});
+		} else setUser(null);
 	}
 
-	return (
-		<UserContext.Provider value={{ user, setUser, logout, login, signup }}>{props.children}</UserContext.Provider>
-	);
+	return <UserContext.Provider value={{ user, logout, login, signup }}>{props.children}</UserContext.Provider>;
 };
 
 export const UserConsumer = UserContext.Consumer;

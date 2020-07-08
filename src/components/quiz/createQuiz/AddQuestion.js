@@ -4,12 +4,10 @@
  */
 
 import React, { useState, useEffect, useContext } from 'react';
-// import { Redirect, Link } from 'react-router-dom';
 import { Field, ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import PreviewQuiz from './PreviewQuiz';
 import { QuizContext } from '../../../QuizContext';
-import { UserContext } from '../../../UserContext';
 
 const Options = ({ options, deleteOption }) => {
 	const [ showOptions, setShowOptions ] = useState(false);
@@ -43,8 +41,7 @@ const Options = ({ options, deleteOption }) => {
 
 const OutterComponent = (props) => {
 	const value = useContext(QuizContext);
-	const { user } = useContext(UserContext);
-	const { addQuestion, quiz } = value;
+	const { addQuestion, quizDraft } = value;
 	return (
 		<Formik
 			initialValues={{
@@ -53,7 +50,6 @@ const OutterComponent = (props) => {
 				correctAns: ''
 			}}
 			onSubmit={(values, actions) => {
-				// const { quiz, setQuiz } = props.location.status;
 				let { question, options, correctAns } = values;
 
 				const questionset = {
@@ -66,23 +62,10 @@ const OutterComponent = (props) => {
 				actions.resetForm();
 				actions.setStatus({ reset: true });
 				actions.setSubmitting(false);
-				// console.log(sessionStorage.getItem('quizId'));
-				// axios
-				// 	.patch(
-				// 		`https://quizdom-backend.herokuapp.com/api/quiz/${sessionStorage.getItem('quizId')}/question`,
-				// 		questionset
-				// 	)
-				// 	.then((res) => {
-				// 		console.log(res);
-
-				// 		setSubmitting(false);
-				// 		setStatus({ reset: true });
-				// 	});
 			}}
 			validationSchema={Yup.object().shape({
 				question: Yup.string().required('Please enter a question'),
 				correctAns: Yup.string().required('Please select a correct ans from the list')
-				// option: Yup.string().required('Please enter an option before clicking add')
 			})}>
 			{/* Form Inner component starts*/}
 			{({ handleSubmit, errors, values, touched, status }) => (
@@ -104,7 +87,7 @@ const AddQuestion = (props) => {
 	const [ optionError, setOptionError ] = useState(false);
 	const [ previewQuiz, setPreviewQuiz ] = useState(false);
 	const { errors, handleSubmit, values, status, touched } = props;
-	const { quiz, postQuiz } = useContext(QuizContext);
+	const { postQuiz, quizDraft } = useContext(QuizContext);
 	const addOption = () => {
 		if (values.option !== undefined && values.option !== '') {
 			setOptions([ ...options, values.option ]);
@@ -132,16 +115,6 @@ const AddQuestion = (props) => {
 		}
 	};
 
-	// const SaveQuiz = (e, published) => {
-	// 	let quiz_temp = quiz;
-	// 	quiz_temp.creatorId = '5e33a1baac64085b044514fb';
-	// 	quiz_temp.published = published;
-	// 	axios.post('http://localhost:2000/api/quiz', quiz_temp).then((res) => {
-	// 		// sessionStorage.setItem('quizId', res.data._id);
-	// 		// actions.setErrors({});
-	// 		console.log(res.data);
-	// 	});
-	// };
 	useEffect(() => {
 		values.options = options;
 		if (status) {
@@ -228,24 +201,23 @@ const AddQuestion = (props) => {
 						<input type="submit" className="button button-blue" value="Add Question" />
 						<button
 							type="button"
-							className="button button-green"
-							value="Save"
-							onClick={() => postQuiz(false)}>
-							{' '}
-							Save
-						</button>
-						<button
-							type="button"
 							className="button button-yellow"
 							value="Preview"
 							onClick={() => setPreviewQuiz(!previewQuiz)}>
 							Preview
 						</button>
+						{/* <button
+							type="button"
+							className="button button-green"
+							value="Save"
+							onClick={() => postQuiz(false)}>
+							Save
+						</button> */}
 					</div>
 				</form>
 			</div>
 
-			{/* <PreviewQuiz isOpen={previewQuiz} setIsOpen={setPreviewQuiz} /> */}
+			<PreviewQuiz isOpen={previewQuiz} setIsOpen={setPreviewQuiz} quizDraft={quizDraft} postQuiz={postQuiz} />
 		</div>
 	);
 };

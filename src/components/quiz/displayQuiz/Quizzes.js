@@ -8,7 +8,9 @@ const Quizzes = (props) => {
 	const value = useContext(QuizContext);
 	const { quizzes } = value;
 
-	return <div className="quizzes">{quizzes.map((quiz) => <Quiz key={quiz._id} quiz={quiz} />)}</div>;
+	return (
+		<div className="quizzes">{quizzes.map((quiz) => quiz.published && <Quiz key={quiz._id} quiz={quiz} />)}</div>
+	);
 };
 
 export default Quizzes;

@@ -2,5 +2,50 @@
     // flex: 1;
     // align-self: flex-start;
 
+    &_overlay {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4)
+    }
 
+    &_content {
+        position: unset;
+        flex: 0 0 60%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        border: 1px solid #ccc;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: .4rem;
+        padding: 2rem;
+        font-size: 1.6rem;
+        // color: white;
+    }
+
+
+    &_questions_list {
+        list-style: none;
+        width: 100%;
+        margin: 1rem;
+
+        &--item {
+            padding: 2rem 1.25rem;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+        }
+
+
+    }
+
+    .form_radio-group {
+        align-self: flex-start;
+    }
 }
