@@ -84,9 +84,11 @@ body {
 .horizontal-div {
   display: flex;
   flex-direction: row;
-  // flex-wrap: wrap;
   justify-content: center;
 
+  &_space-between {
+    justify-content: space-between;
+  }
 }
 
 .icon {
@@ -124,7 +126,7 @@ body {
   width: 60%;
   display: flex;
 
-  
+
   @media only screen and (max-width:$bp-larger) {
     width: 70%;
   }
@@ -162,6 +164,7 @@ body {
 .button {
   align-self: center;
 
+
   &,
   &:link,
   &:visited {
@@ -178,6 +181,14 @@ body {
     // @include respond(phone) {
     //   margin: 2rem;
     // }
+  }
+
+  &-add {
+    margin: 0;
+    margin-top: 2rem;
+    padding: 0;
+    border-radius: 0;
+    align-self: flex-start;
   }
 
   &:hover {

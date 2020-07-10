@@ -14,7 +14,12 @@ export default class PreviewQuestion extends Component {
 
 				{options.map((option, i) => (
 					<div className="form_radio-group" key={i}>
-						<input type="radio" checked={question.correctAns === option} className="form_radio-input" />
+						<input
+							type="radio"
+							checked={question.correctAns === option}
+							className="form_radio-input"
+							readOnly
+						/>
 						<label htmlFor={option} className="form_radio-label">
 							<span className="form_radio-button" />
 							{option}

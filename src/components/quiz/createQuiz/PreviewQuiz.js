@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import PreviewQuestion from './PreviewQuestion';
-import { QuizContext } from '../../../QuizContext';
 import ReactModal from 'react-modal';
 
 export default function PreviewQuiz(props) {
-	// const { quizDraft, postQuiz } = props;
-	// const { questionset } = quizDraft;
-	const quizDraft = JSON.parse(localStorage.getItem('unsavedQuiz'));
+	const { quizDraft, postQuiz } = props;
 	const { questionset } = quizDraft;
 	return (
 		<ReactModal
@@ -27,7 +24,7 @@ export default function PreviewQuiz(props) {
 			) : (
 				'No questions added'
 			)}
-			<button type="button" className="button button-green" value="Save" onClick={() => props.postQuiz(true)}>
+			<button type="button" className="button button-green" value="Save" onClick={() => postQuiz(true)}>
 				Publish
 			</button>
 		</ReactModal>

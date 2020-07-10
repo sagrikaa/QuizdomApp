@@ -1,11 +1,17 @@
 .create-question-section {
     display: flex;
-    margin: 2rem;
     justify-content: center;
 
     .create-question {
         flex: 0 0 60%;
 
+        @media only screen and (max-width:$bp-larger) {
+            flex: 0 0 70%;
+        }
+
+        @media only screen and (max-width:$bp-large) {
+            flex: 0 0 90%;
+        }
     }
 
     .preview-quiz {
@@ -17,14 +23,11 @@
 .create-question {
 
 
-    .form_group .horizontal-div {
-        justify-content: space-between;
-        align-items: flex-start;
-
-        .form_input {
-            flex: 0 0 40%;
-        }
+    .horizontal-div .form_group {
+        flex: 0 0 55%;
     }
+
+
 
 
 }

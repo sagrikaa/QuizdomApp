@@ -5,6 +5,7 @@
 
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAlert } from 'react-alert';
 
 export const UserContext = createContext();
 
@@ -43,6 +44,7 @@ export const UserProvider = (props) => {
 	//Stores token in session storage
 	const login = (email, password) => {
 		// If login id and password is correct, request a token
+
 		axios
 			.post('https://quizdom-backend.herokuapp.com/api/auth', {
 				email,
@@ -52,7 +54,7 @@ export const UserProvider = (props) => {
 				//Setting token for the whole session
 				const auth_token = res.data.token;
 				setToken(auth_token);
-				alert(`Successfully logged in!`);
+				alert.show(`Successfully logged in!`);
 			})
 			.catch((error) => {
 				console.log(error);

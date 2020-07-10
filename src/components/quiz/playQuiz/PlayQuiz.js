@@ -5,15 +5,18 @@
 
 import React, { Component } from 'react';
 import Question from './Question';
-export default class PlayQuiz extends Component {
+import { withAlert } from 'react-alert';
+
+class PlayQuiz extends Component {
 	get quiz() {
 		return this.props.location.state.quiz;
 	}
 
 	initialState() {
 		return {
-			showAns: false,
-			resultArray: Array(this.quiz.questionset.length).fill(false)
+			showAnswer: false,
+			resultArray: Array(this.quiz.questionset.length).fill(false),
+			reset: true
 		};
 	}
 
@@ -38,18 +41,9 @@ export default class PlayQuiz extends Component {
 
 	getResult = (e) => {
 		e.preventDefault();
-		this.setState({ showAns: !this.state.showAns });
-		alert(this.getNumberofCorrectAnswers() + '/' + this.quiz.questionset.length);
+		this.setState({ showAnswer: !this.state.showAnswer, reset: false });
+		this.props.alert.success(this.getNumberofCorrectAnswers() + '/' + this.quiz.questionset.length);
 	};
-
-	// onRedirect = () => {
-	// 	const location = {
-	// 		pathname: '/playquiz',
-	// 		state: 'hello'
-	// 	};
-
-	// 	return <Redirect to={location} />;
-	// };
 
 	render() {
 		const quiz = this.quiz;
@@ -74,13 +68,12 @@ export default class PlayQuiz extends Component {
 										set={quest}
 										index={index + 1}
 										key={index + 1}
-										getResult={this.state.showAns}
-										addresult={this.addresult}
-										// deductresult={this.deductresult}
+										showAnswer={this.state.showAnswer}
 										alterResultArray={this.alterResultArray}
+										reset={this.state.reset}
 									/>
 
-									{this.state.showAns && (
+									{this.state.showAnswer && (
 										<div>
 											<label style={{ color: 'blue' }}>Answer: {quest.correctAns}</label>
 										</div>
@@ -89,7 +82,7 @@ export default class PlayQuiz extends Component {
 							</li>
 						))}
 
-						{this.state.showAns ? (
+						{this.state.showAnswer ? (
 							<button
 								type="button"
 								id="tryAgain"
@@ -118,3 +111,4 @@ export default class PlayQuiz extends Component {
 		);
 	}
 }
+export default withAlert()(PlayQuiz);

@@ -31,11 +31,6 @@ const AddQuiz = (props) => {
 					description: ''
 				}}
 				onSubmit={(values, actions) => {
-					// axios.post('https://quizdom-backend.herokuapp.com/api/quiz', values).then((res) => {
-					// 	sessionStorage.setItem('quizId', res.data._id);
-					// 	actions.setErrors({});
-					// });
-					console.log(values);
 					const { name, category, difficult, description } = values;
 					createQuiz(name, category, difficult, description, []);
 					actions.setErrors({});

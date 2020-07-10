@@ -16,9 +16,13 @@ export default class Question extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedOption: '',
-			selectedOptionId: 0
+			selectedOption: ''
+			// selectedOptionId: 0
 		};
+	}
+
+	componentDidUpdate() {
+		// this.props.reset && this.setState({ selectedOption: '' });
 	}
 
 	handleChange = (e) => {
@@ -26,17 +30,17 @@ export default class Question extends Component {
 		this.props.alterResultArray(this.props.index - 1, e.target.value);
 	};
 	render() {
-		const { set, index, getResult } = this.props;
+		const { set, index, showAnswer } = this.props;
 		const { question, options, _id, correctAns } = set;
 		return (
 			<div className="question">
 				<h5 className="question_heading">
 					{/* renders a tick/cross for each right wrong answer */}
-					{getResult && (
+					{showAnswer && (
 						<TickCross
 							correctAns={correctAns}
 							selectedOption={this.state.selectedOption}
-							getResult={getResult}
+							showAnswer={showAnswer}
 						/>
 					)}
 					<span>{`${index}.`}</span>

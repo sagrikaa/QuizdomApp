@@ -6,7 +6,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
-
+import { useAlert } from 'react-alert';
 export const QuizContext = createContext();
 
 export const QuizProvider = (props) => {
@@ -14,10 +14,11 @@ export const QuizProvider = (props) => {
 	const [ quizzes, setQuizzes ] = useState([]);
 	const [ categories, setCategories ] = useState([]);
 	const [ faqs, setFaqs ] = useState([]);
+	const alert = useAlert();
 
 	//New quiz related data
 	const [ quizDraft, setQuizDraft ] = useState({});
-	const [ category, setCategory ] = useState([]);
+	// const [ category, setCategory ] = useState([]);
 
 	const value = useContext(UserContext);
 
@@ -26,8 +27,8 @@ export const QuizProvider = (props) => {
 		let unsavedQuiz = { ...quizDraft };
 		unsavedQuiz.published = published;
 		axios.post('https://quizdom-backend.herokuapp.com/api/quiz', unsavedQuiz).then((res) => {
-			console.log(res.data);
-			alert('Success!!');
+			setQuizDraft({});
+			alert.success('Quiz successfully published!!');
 		});
 	};
 
@@ -38,8 +39,8 @@ export const QuizProvider = (props) => {
 			category,
 			difficult,
 			description,
-			questionset,
-			creatorId: value.user._id
+			creatorId: value.user._id,
+			questionset
 		};
 		setQuizDraft(unsavedQuiz);
 	};
@@ -51,10 +52,11 @@ export const QuizProvider = (props) => {
 			quiz_temp.questionset.push(set);
 			setQuizDraft(quiz_temp);
 		} else {
-			alert('No Quiz selected! Please go back to create quiz!');
+			alert.error('No Quiz selected! Redirecting to create quiz!');
 		}
 	};
 
+	useEffect(() => {}, [ quizDraft ]);
 	useEffect(
 		() => {
 			if (Object.entries(quizDraft).length > 0) {
@@ -64,14 +66,6 @@ export const QuizProvider = (props) => {
 				// localStorage.setItem('unsavedQuizzes', JSON.stringify(unsavedQuizzes));
 				localStorage.setItem('unsavedQuiz', JSON.stringify(quizDraft));
 			}
-		},
-		[ quizDraft ]
-	);
-	useEffect(
-		() => {
-			//Get existing catgories from the api
-			axios.get('https://quizdom-backend.herokuapp.com/api/category').then((res) => setCategory(res.data));
-
 			//get all quizzes from the api
 			axios.get('https://quizdom-backend.herokuapp.com/api/quiz').then((res) => {
 				setQuizzes(res.data);
@@ -91,8 +85,7 @@ export const QuizProvider = (props) => {
 
 	// useEffect(() => {}, [ quiz ]);
 	return (
-		<QuizContext.Provider
-			value={{ quizzes, faqs, categories, quizDraft, category, createQuiz, addQuestion, postQuiz }}>
+		<QuizContext.Provider value={{ quizzes, faqs, categories, quizDraft, createQuiz, addQuestion, postQuiz }}>
 			{props.children}
 		</QuizContext.Provider>
 	);

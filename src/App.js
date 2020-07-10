@@ -8,11 +8,12 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 
 // Context imports
 import { UserProvider, UserContext } from './UserContext';
-import Provider from './context';
-import { QuizProvider, QuizContext } from './QuizContext';
+import { QuizProvider } from './QuizContext';
 
 //Component imports
 import AddQuestion from './components/quiz/createQuiz/AddQuestion';
@@ -37,15 +38,23 @@ function PrivateRoute({ component: Component, ...rest }) {
 	);
 }
 
+const options = {
+	position: 'top center',
+	timeout: 5000,
+	offset: '5rem',
+	transition: 'scale'
+	// containerStyle: {
+	// 	backgroundColor: '#343A40'
+	// }
+};
 class App extends React.Component {
 	render() {
 		return (
-			<UserProvider>
-				<BrowserRouter>
-					<Provider>
+			<BrowserRouter>
+				<AlertProvider template={AlertTemplate} {...options}>
+					<UserProvider>
 						<QuizProvider>
 							<div className="App">
-								{/* <Header branding="Quizdom" /> */}
 								<Header branding="Quizdom" />
 								<Switch>
 									<Route exact path="/" name="Quizzes" component={Quizzes} />
@@ -59,9 +68,9 @@ class App extends React.Component {
 								</Switch>
 							</div>
 						</QuizProvider>
-					</Provider>
-				</BrowserRouter>
-			</UserProvider>
+					</UserProvider>
+				</AlertProvider>
+			</BrowserRouter>
 		);
 	}
 }
