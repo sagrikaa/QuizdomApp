@@ -5,11 +5,11 @@
     .create-question {
         flex: 0 0 60%;
 
-        @media only screen and (max-width:$bp-larger) {
+        @media only screen and (max-width:$bp-large) {
             flex: 0 0 70%;
         }
 
-        @media only screen and (max-width:$bp-large) {
+        @media only screen and (max-width:$bp-sm) {
             flex: 0 0 90%;
         }
     }
@@ -22,13 +22,16 @@
 
 .create-question {
 
+    .horizontal-div {
+        @media only screen and (max-width:$bp-sm) {
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+    }
 
     .horizontal-div .form_group {
         flex: 0 0 55%;
     }
-
-
-
 
 }
 
@@ -39,7 +42,10 @@
 
     .button {
         align-self: flex-start;
-        margin-bottom: .2rem;
+
+        @media only screen and (max-width:$bp-sm) {
+            align-self: center;
+        }
     }
 
     &_list {
@@ -67,16 +73,5 @@
             }
         }
     }
-
-}
-
-.bullet-green {
-    height: 1.2rem;
-    width: 1.2rem;
-    border-radius: 50%;
-    background-color: $color-primary-dark;
-    display: inline-block;
-    margin-right: .5rem;
-
 
 }

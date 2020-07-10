@@ -1,6 +1,4 @@
 .preview-quiz {
-    // flex: 1;
-    // align-self: flex-start;
 
     &_overlay {
         position: fixed;
@@ -29,6 +27,14 @@
         padding: 2rem;
         font-size: 1.6rem;
         // color: white;
+
+        @media only screen and (max-width:$bp-larger) {
+            flex: 0 0 70%;
+        }
+
+        @media only screen and (max-width:$bp-large) {
+            flex: 0 0 90%;
+        }
     }
 
 
