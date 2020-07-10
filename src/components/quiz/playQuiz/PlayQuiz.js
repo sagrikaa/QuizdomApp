@@ -1,13 +1,14 @@
-/**
- * 
- * @author: Sagrika Aggarwal.
- */
+/****************************/
+/* @author: Sagrika Aggarwal*/
+/*****************************/
 
 import React, { Component } from 'react';
 import Question from './Question';
 import { withAlert } from 'react-alert';
+import { Link } from 'react-router-dom';
 
 class PlayQuiz extends Component {
+	//Quiz Getter
 	get quiz() {
 		return this.props.location.state.quiz;
 	}
@@ -15,27 +16,25 @@ class PlayQuiz extends Component {
 	initialState() {
 		return {
 			showAnswer: false,
-			resultArray: Array(this.quiz.questionset.length).fill(false),
-			reset: true
+			reset: true,
+			selectedOptions: Array(this.quiz.questionset.length).fill('')
 		};
 	}
 
 	state = this.initialState();
 
-	alterResultArray = (i, selectedOption) => {
-		const { questionset } = this.quiz;
-		const res = [ ...this.state.resultArray ];
-		if (questionset[i].correctAns.trim() === selectedOption.trim()) res[i] = true;
-		else res[i] = false;
-		this.setState({
-			resultArray: res
-		});
+	handleSelectedOptionChange = (index, value) => {
+		let arr = [ ...this.state.selectedOptions ];
+		arr.splice(index, 1, value);
+		this.setState({ selectedOptions: [ ...arr ] });
 	};
 
 	getNumberofCorrectAnswers = () => {
-		let count = this.state.resultArray.reduce((n, val) => {
-			return n + (val === true);
-		}, 0);
+		const { questionset } = this.quiz;
+		let count = 0;
+		questionset.forEach((question, index) => {
+			if (this.state.selectedOptions[index].trim() === question.correctAns.trim()) count++;
+		});
 		return count;
 	};
 
@@ -69,8 +68,9 @@ class PlayQuiz extends Component {
 										index={index + 1}
 										key={index + 1}
 										showAnswer={this.state.showAnswer}
-										alterResultArray={this.alterResultArray}
 										reset={this.state.reset}
+										selectedOption={this.state.selectedOptions[index]}
+										handleSelectedOptionChange={this.handleSelectedOptionChange}
 									/>
 
 									{this.state.showAnswer && (
@@ -83,24 +83,26 @@ class PlayQuiz extends Component {
 						))}
 
 						{this.state.showAnswer ? (
-							<button
-								type="button"
-								id="tryAgain"
-								className="button button-green"
-								value="Play Again"
-								onClick={() => {
-									this.setState(this.initialState());
-								}}>
-								Play Again
-							</button>
+							<div className="horizontal-div">
+								<Link to="/quizzes" className="button button-green">
+									Try a new Quiz
+								</Link>
+								<button
+									type="button"
+									id="tryAgain"
+									className="button button-green"
+									value="Play Again"
+									onClick={() => {
+										this.setState(this.initialState());
+									}}>
+									Play Again
+								</button>
+							</div>
 						) : (
-							// <Link to="/quizzes" className="btn btn-block gradientButton">
-							// 	Try a new Quiz
-							// </Link>
 							<input
 								type="submit"
 								id="getResult"
-								className="button button-green"
+								className="button button-blue"
 								value="Get Result"
 								onClick={this.getResult}
 							/>
